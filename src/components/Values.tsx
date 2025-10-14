@@ -1,6 +1,10 @@
-import { Shield, Star, Handshake, Lightbulb, FileCheck, Heart } from './Icons';
+import { Shield, Star, Handshake, Lightbulb, FileCheck, Heart, ArrowRight } from './Icons';
 
-export default function Values() {
+interface ValuesProps {
+  onNavigate?: (section: string) => void;
+}
+
+export default function Values({ onNavigate }: ValuesProps) {
   const values = [
     {
       icon: Shield,
@@ -41,16 +45,66 @@ export default function Values() {
   ];
 
   return (
-    <section id="values" className="section-padding bg-dark-950">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-100 mb-4">
-            Our Core Values
-          </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            The principles that guide our work and define our commitment to excellence
-          </p>
+    <div className="bg-dark-950">
+      {/* Hero Section */}
+      <section className="relative h-screen w-full overflow-hidden flex items-center bg-dark-950">
+        <div className="max-w-7xl mx-auto px-6 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+            {/* Left Content - Title and Description */}
+            <div>
+              <h1 className="text-6xl lg:text-7xl xl:text-8xl font-bold text-gray-100 leading-tight mb-8 font-serif italic">
+                Our Values
+              </h1>
+              <p className="text-lg text-gray-400 leading-relaxed max-w-lg">
+                The principles that guide our work and define our commitment to excellence. 
+                These values aren't just words—they are the foundation of how we operate, 
+                make decisions, and serve our clients every day.
+              </p>
+            </div>
+
+            {/* Right Content - Images and CTA */}
+            <div className="space-y-6">
+              {/* Talk to Us Button */}
+              <div className="mb-8">
+                <button
+                  onClick={() => onNavigate?.('contact')}
+                  className="inline-flex items-center gap-3 px-8 py-4 bg-transparent border-2 border-accent-500 text-accent-500 font-medium hover:bg-accent-500 hover:text-white transition-all duration-300 group"
+                >
+                  Talk to Us
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </button>
+              </div>
+
+              {/* Images Grid */}
+              <div className="grid grid-cols-2 gap-4">
+                <div className="relative rounded-lg overflow-hidden">
+                  <img
+                    src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                    alt="Team collaboration"
+                    className="w-full h-64 object-cover"
+                  />
+                </div>
+                <div className="relative rounded-lg overflow-hidden">
+                  <img
+                    src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                    alt="Professional integrity"
+                    className="w-full h-64 object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </section>
+
+      {/* Values Content Section */}
+      <section id="values" className="section-padding bg-dark-950">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-100 mb-4">
+              Our Core Values
+            </h2>
+          </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {values.map((value, index) => {
@@ -86,5 +140,6 @@ export default function Values() {
         </div>
       </div>
     </section>
+    </div>
   );
 }

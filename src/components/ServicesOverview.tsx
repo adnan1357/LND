@@ -47,14 +47,14 @@ export default function ServicesOverview({ onNavigate }: ServicesOverviewProps) 
   ];
 
   return (
-    <section className="py-24 bg-dark-950">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="h-screen py-16 bg-dark-950 flex items-center">
+      <div className="max-w-7xl mx-auto px-6 w-full">
         {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif italic text-gray-100 mb-6">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif italic text-gray-100 mb-4">
             Our Services
           </h2>
-          <p className="text-lg text-gray-400 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base text-gray-400 max-w-3xl mx-auto leading-relaxed">
             We craft world-class construction management experiences that elevate your project 
             and drive results. From strategy to execution, we bring your vision 
             to life with creativity and precision.
@@ -62,9 +62,9 @@ export default function ServicesOverview({ onNavigate }: ServicesOverviewProps) 
         </div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           {/* Left Side - Service List */}
-          <div className="space-y-8">
+          <div className="space-y-4 max-h-[500px] overflow-y-auto pr-2">
             {services.map((service, index) => {
               const Icon = service.icon;
               const isActive = activeService === index;
@@ -80,19 +80,19 @@ export default function ServicesOverview({ onNavigate }: ServicesOverviewProps) 
                     onClick={() => setActiveService(index)}
                     className="w-full text-left group"
                   >
-                    <div className="flex items-start gap-4 mb-4">
-                      <div className={`w-12 h-12 rounded-lg flex items-center justify-center transition-colors ${
+                    <div className="flex items-start gap-3 mb-2">
+                      <div className={`w-10 h-10 rounded-lg flex items-center justify-center transition-colors ${
                         isActive ? 'bg-accent-600' : 'bg-dark-800 group-hover:bg-dark-700'
                       }`}>
-                        <Icon className={`w-6 h-6 ${isActive ? 'text-white' : 'text-gray-400'}`} />
+                        <Icon className={`w-5 h-5 ${isActive ? 'text-white' : 'text-gray-400'}`} />
                       </div>
                       <div className="flex-1">
-                        <h3 className={`text-xl font-bold mb-2 transition-colors ${
+                        <h3 className={`text-lg font-bold mb-1 transition-colors ${
                           isActive ? 'text-white' : 'text-gray-300 group-hover:text-white'
                         }`}>
                           {service.title}
                         </h3>
-                        <p className="text-gray-400 text-sm leading-relaxed">
+                        <p className="text-gray-400 text-xs leading-relaxed">
                           {service.description}
                         </p>
                       </div>
@@ -100,8 +100,8 @@ export default function ServicesOverview({ onNavigate }: ServicesOverviewProps) 
                   </button>
                   
                   {isActive && (
-                    <div className="ml-16 animate-in slide-in-from-top-2 duration-300">
-                      <p className="text-gray-300 leading-relaxed mb-4">
+                    <div className="ml-13 animate-in slide-in-from-top-2 duration-300">
+                      <p className="text-gray-300 text-sm leading-relaxed mb-2">
                         {service.details}
                       </p>
                     </div>
@@ -113,45 +113,43 @@ export default function ServicesOverview({ onNavigate }: ServicesOverviewProps) 
 
           {/* Right Side - Images */}
           <div className="relative">
-            <div className="sticky top-8">
-              <div className="grid grid-cols-2 gap-4">
-                {/* Main large image */}
-                <div className="col-span-2 rounded-2xl overflow-hidden shadow-2xl border border-dark-700">
-                  <img
-                    src={services[activeService].image}
-                    alt={services[activeService].title}
-                    className="w-full h-64 object-cover transition-all duration-500"
-                  />
-                </div>
-                
-                {/* Two smaller images */}
-                <div className="rounded-xl overflow-hidden shadow-lg border border-dark-700">
-                  <img
-                    src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                    alt="Construction planning"
-                    className="w-full h-32 object-cover"
-                  />
-                </div>
-                <div className="rounded-xl overflow-hidden shadow-lg border border-dark-700">
-                  <img
-                    src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                    alt="Construction site"
-                    className="w-full h-32 object-cover"
-                  />
-                </div>
+            <div className="grid grid-cols-2 gap-3">
+              {/* Main large image */}
+              <div className="col-span-2 rounded-xl overflow-hidden shadow-2xl border border-dark-700">
+                <img
+                  src={services[activeService].image}
+                  alt={services[activeService].title}
+                  className="w-full h-48 object-cover transition-all duration-500"
+                />
+              </div>
+              
+              {/* Two smaller images */}
+              <div className="rounded-lg overflow-hidden shadow-lg border border-dark-700">
+                <img
+                  src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                  alt="Construction planning"
+                  className="w-full h-32 object-cover"
+                />
+              </div>
+              <div className="rounded-lg overflow-hidden shadow-lg border border-dark-700">
+                <img
+                  src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                  alt="Construction site"
+                  className="w-full h-32 object-cover"
+                />
               </div>
             </div>
           </div>
         </div>
 
         {/* CTA Button */}
-        <div className="text-center mt-16">
+        <div className="text-center mt-8">
           <button
             onClick={() => onNavigate('services')}
-            className="inline-flex items-center gap-3 px-8 py-4 bg-accent-600 hover:bg-accent-700 text-white rounded-lg font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-accent-600 hover:bg-accent-700 text-white rounded-lg font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl text-sm"
           >
             View All Services
-            <ArrowRight className="w-5 h-5" />
+            <ArrowRight className="w-4 h-4" />
           </button>
         </div>
       </div>

@@ -13,7 +13,7 @@ export default function AboutPage() {
   };
 
   return (
-    <div className="h-screen overflow-y-auto">
+    <div>
       <About onNavigate={handleNavigate} />
     </div>
   );

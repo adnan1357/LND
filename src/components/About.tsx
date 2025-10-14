@@ -47,13 +47,13 @@ export default function About({ onNavigate }: AboutProps) {
   return (
     <div className="bg-dark-950">
       {/* Hero Section */}
-      <section className="pt-64 pb-24 bg-dark-950">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="relative h-screen w-full overflow-hidden flex items-center bg-dark-950">
+        <div className="max-w-7xl mx-auto px-6 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             {/* Left Content - Title and Description */}
             <div>
-              <h1 className="text-6xl lg:text-7xl xl:text-8xl font-bold text-gray-100 leading-tight mb-8 tracking-tight">
-                ABOUT US
+              <h1 className="text-6xl lg:text-7xl xl:text-8xl font-bold text-gray-100 leading-tight mb-8 font-serif italic">
+                About Us
               </h1>
               <p className="text-lg text-gray-400 leading-relaxed max-w-lg">
                 At LND Management Services, we understand that a project is more than just four walls and 

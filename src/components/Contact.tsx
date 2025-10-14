@@ -1,229 +1,208 @@
 import { useState } from 'react';
-import { Mail, Phone, MapPin, Send, CheckCircle2 } from './Icons';
+import { Mail, Phone, MapPin, CheckCircle2 } from './Icons';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    phone: '',
-    company: '',
     message: '',
+    agree: false,
   });
-  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({ name: '', email: '', phone: '', company: '', message: '' });
-    }, 3000);
+    console.log('Form submitted:', formData);
+    // Handle form submission
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value, type } = e.target;
+    setFormData({ 
+      ...formData, 
+      [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value 
+    });
   };
 
   return (
-    <section id="contact" className="section-padding bg-dark-950">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-100 mb-4">
-            Get In Touch
-          </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Ready to discuss your project? Contact us today for a consultation
+    <div className="bg-dark-950 h-screen overflow-hidden flex flex-col">
+      {/* Header Section */}
+      <section className="pt-24 pb-8 px-6 flex-shrink-0">
+        <div className="max-w-6xl mx-auto text-center">
+          <p className="text-xs font-semibold text-accent-400 uppercase tracking-wider mb-2">
+            CONTACT US
+          </p>
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-100 mb-3">
+            Get in touch with us
+          </h1>
+          <p className="text-base text-gray-400 max-w-2xl mx-auto">
+            Fill out the form below or schedule a meeting with us at your convenience.
           </p>
         </div>
+      </section>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div>
-            <h3 className="text-2xl font-bold text-gray-100 mb-6">
-              Contact Information
-            </h3>
-            <div className="space-y-6 mb-8">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 gradient-accent rounded-lg flex items-center justify-center flex-shrink-0">
-                  <MapPin className="w-6 h-6 text-white" />
-                </div>
+      {/* Main Content Section */}
+      <section className="flex-1 px-6 pb-8 overflow-auto">
+        <div className="max-w-6xl mx-auto h-full">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 h-full">
+            {/* Left Side - Form */}
+            <div className="flex flex-col">
+              <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <h4 className="font-semibold text-gray-100 mb-1">Office Location</h4>
-                  <p className="text-gray-400">London, England</p>
-                  <p className="text-gray-400">United Kingdom</p>
+                  <label htmlFor="name" className="block text-xs font-medium text-gray-400 uppercase tracking-wide mb-2">
+                    NAME
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="w-full px-3 py-2 bg-dark-900 border border-dark-700 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 outline-none transition-all text-gray-100 placeholder-gray-500 text-sm"
+                    placeholder="Your name"
+                  />
                 </div>
-              </div>
 
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-amber-500 to-amber-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Mail className="w-6 h-6 text-white" />
-                </div>
                 <div>
-                  <h4 className="font-semibold text-gray-100 mb-1">Email</h4>
-                  <p className="text-gray-400">info@lndms.co.uk</p>
-                  <p className="text-gray-400">enquiries@lndms.co.uk</p>
+                  <label htmlFor="email" className="block text-xs font-medium text-gray-400 uppercase tracking-wide mb-2">
+                    EMAIL
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full px-3 py-2 bg-dark-900 border border-dark-700 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 outline-none transition-all text-gray-100 placeholder-gray-500 text-sm"
+                    placeholder="Enter Your Email"
+                  />
                 </div>
-              </div>
 
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-800 to-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Phone className="w-6 h-6 text-white" />
-                </div>
                 <div>
-                  <h4 className="font-semibold text-gray-100 mb-1">Phone</h4>
-                  <p className="text-gray-400">+44 (0) 20 XXXX XXXX</p>
-                  <p className="text-sm text-gray-500 mt-1">Monday - Friday, 9:00 AM - 6:00 PM</p>
+                  <label htmlFor="message" className="block text-xs font-medium text-gray-400 uppercase tracking-wide mb-2">
+                    MESSAGE
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    required
+                    value={formData.message}
+                    onChange={handleChange}
+                    rows={4}
+                    className="w-full px-3 py-2 bg-dark-900 border border-dark-700 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 outline-none transition-all resize-none text-gray-100 placeholder-gray-500 text-sm"
+                    placeholder="Enter Your Message"
+                  />
+                </div>
+
+                <div className="flex items-start gap-2">
+                  <input
+                    type="checkbox"
+                    id="agree"
+                    name="agree"
+                    required
+                    checked={formData.agree}
+                    onChange={handleChange}
+                    className="mt-1 w-4 h-4 bg-dark-900 border-dark-700 rounded focus:ring-2 focus:ring-accent-500 text-accent-600"
+                  />
+                  <label htmlFor="agree" className="text-xs text-gray-400">
+                    I agree with{' '}
+                    <a href="#" className="text-accent-400 hover:text-accent-300 underline">
+                      Terms and Conditions
+                    </a>
+                  </label>
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full px-4 py-3 bg-dark-800 hover:bg-dark-700 text-gray-100 rounded-lg font-semibold transition-all border border-dark-700 hover:border-accent-600 text-sm"
+                >
+                  Send Your Request
+                </button>
+              </form>
+
+              {/* Contact Methods */}
+              <div className="mt-6">
+                <h3 className="text-sm font-semibold text-gray-100 mb-3">
+                  You can also Contact Us via
+                </h3>
+                <div className="flex flex-wrap gap-3">
+                  <a
+                    href="mailto:info@lndms.co.uk"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-dark-900 border border-dark-700 rounded-lg hover:border-accent-600 transition-all text-sm"
+                  >
+                    <Mail className="w-4 h-4 text-accent-400" />
+                    <span className="text-gray-300 text-xs">info@lndms.co.uk</span>
+                  </a>
+                  <a
+                    href="tel:+442076489923"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-dark-900 border border-dark-700 rounded-lg hover:border-accent-600 transition-all text-sm"
+                  >
+                    <Phone className="w-4 h-4 text-accent-400" />
+                    <span className="text-gray-300 text-xs">+44 20 7648 9923</span>
+                  </a>
                 </div>
               </div>
             </div>
 
-            <div className="bg-gradient-to-br from-blue-50 to-amber-50 rounded-xl p-8">
-              <h4 className="text-xl font-bold text-gray-900 mb-4">
-                Why Work With Us?
-              </h4>
-              <ul className="space-y-3">
-                <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-blue-900 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-700">BSc, MCIOB & MRICS qualified team</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-blue-900 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-700">10+ years industry experience</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-blue-900 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-700">Building Safety Regulations 2022 experts</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-blue-900 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-700">Projects valued £5-20 million</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div>
-            <div className="bg-white rounded-xl border border-gray-200 shadow-lg p-8">
-              <h3 className="text-2xl font-bold text-gray-100 mb-6">
-                Send Us A Message
-              </h3>
-
-              {isSubmitted ? (
-                <div className="text-center py-12">
-                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <CheckCircle2 className="w-8 h-8 text-green-600" />
+            {/* Right Side - Benefits & Locations */}
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-lg font-bold text-gray-100 mb-4">
+                  With our services you can
+                </h3>
+                <div className="space-y-3">
+                  <div className="flex items-start gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-accent-400 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-300 text-sm">Expert quantity surveying and cost management</span>
                   </div>
-                  <h4 className="text-xl font-semibold text-gray-900 mb-2">
-                    Message Sent!
-                  </h4>
-                  <p className="text-gray-400">
-                    Thank you for contacting us. We'll get back to you shortly.
+                  <div className="flex items-start gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-accent-400 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-300 text-sm">Building Safety Regulations 2022 compliance expertise</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-accent-400 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-300 text-sm">Comprehensive project management from inception to completion</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-accent-400 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-300 text-sm">Proven track record with £85m+ in project value</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Locations */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="bg-dark-900 border border-dark-700 rounded-lg p-4">
+                  <div className="flex items-center gap-2 mb-2">
+                    <MapPin className="w-4 h-4 text-accent-400" />
+                    <h4 className="font-semibold text-gray-100 text-sm">UK</h4>
+                  </div>
+                  <p className="text-gray-400 text-xs leading-relaxed">
+                    London, England<br />
+                    United Kingdom
                   </p>
                 </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                      Full Name *
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      required
-                      value={formData.name}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-900 focus:border-transparent outline-none transition-all"
-                      placeholder="John Smith"
-                    />
-                  </div>
 
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                      Email Address *
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      required
-                      value={formData.email}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-900 focus:border-transparent outline-none transition-all"
-                      placeholder="john.smith@example.com"
-                    />
+                <div className="bg-dark-900 border border-dark-700 rounded-lg p-4">
+                  <div className="flex items-center gap-2 mb-2">
+                    <MapPin className="w-4 h-4 text-accent-400" />
+                    <h4 className="font-semibold text-gray-100 text-sm">UAE</h4>
                   </div>
-
-                  <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
-                      Phone Number
-                    </label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-900 focus:border-transparent outline-none transition-all"
-                      placeholder="+44 (0) 20 XXXX XXXX"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-2">
-                      Company Name
-                    </label>
-                    <input
-                      type="text"
-                      id="company"
-                      name="company"
-                      value={formData.company}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-900 focus:border-transparent outline-none transition-all"
-                      placeholder="Your Company"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                      Message *
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      required
-                      value={formData.message}
-                      onChange={handleChange}
-                      rows={5}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-900 focus:border-transparent outline-none transition-all resize-none"
-                      placeholder="Tell us about your project..."
-                    />
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="w-full px-6 py-4 bg-gradient-to-r from-blue-900 to-blue-700 text-white rounded-lg font-semibold hover:from-blue-800 hover:to-blue-600 transition-all hover:scale-105 flex items-center justify-center gap-2"
-                  >
-                    Send Message
-                    <Send className="w-5 h-5" />
-                  </button>
-                </form>
-              )}
+                  <p className="text-gray-400 text-xs leading-relaxed">
+                    Dubai<br />
+                    United Arab Emirates
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-
-        <div className="mt-12 rounded-xl overflow-hidden border border-gray-200 shadow-lg h-96">
-          <iframe
-            title="Office Location"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.5436072374934!2d-0.12775688408419!3d51.50735597963555!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487604b900d26973%3A0x4291f3172409ea92!2sLondon%2C%20UK!5e0!3m2!1sen!2s!4v1234567890123"
-            width="100%"
-            height="100%"
-            style={{ border: 0 }}
-            allowFullScreen
-            loading="lazy"
-          ></iframe>
-        </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }
+
+
+
+

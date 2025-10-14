@@ -37,30 +37,29 @@ export default function Navigation() {
 
   return (
     <nav className="absolute top-0 left-0 right-0 z-50 px-6 py-6">
-      <div className="max-w-7xl mx-auto grid grid-cols-3 items-center">
+      <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo - Left */}
-        <div className="flex justify-start">
+        <div className="flex items-center">
           <Link
             to="/"
             className="flex items-center space-x-3"
           >
-            <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center shadow-lg">
-              <Building2 className="w-7 h-7 text-gray-900" />
-            </div>
-            <div>
-              <h1 className="text-xl font-bold text-white">LNDMS</h1>
-            </div>
+            <img 
+              src="/images/logo.png" 
+              alt="LNDMS Logo" 
+              className="h-12 w-auto"
+            />
           </Link>
         </div>
 
         {/* Centered Navigation */}
-        <div className="flex justify-center">
-          <div className="hidden md:flex space-x-8">
+        <div className="absolute left-1/2 transform -translate-x-1/2">
+          <div className="hidden lg:flex items-center space-x-6 xl:space-x-8">
             {navItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
-                className={`text-sm font-medium transition-colors ${
+                className={`text-sm font-medium transition-colors whitespace-nowrap ${
                   isActive(item.path)
                     ? 'text-white'
                     : 'text-white/80 hover:text-white'
@@ -73,12 +72,12 @@ export default function Navigation() {
         </div>
 
         {/* Contact Info - Right */}
-        <div className="flex justify-end">
-          <div className="hidden md:flex items-center space-x-4">
-            <span className="text-white/80 text-sm">+44 (0) 20 XXXX XXXX</span>
+        <div className="flex items-center">
+          <div className="hidden lg:flex items-center space-x-4">
+            <span className="text-white/80 text-sm whitespace-nowrap">+44 (0) 20 XXXX XXXX</span>
             <button
               onClick={() => handleMobileMenuClose()}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-white text-black rounded-full text-sm font-medium hover:bg-gray-100 transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-white text-black rounded-full text-sm font-medium hover:bg-gray-100 transition-colors whitespace-nowrap"
             >
               Get in Touch
               <div className="w-6 h-6 bg-black text-white rounded-full flex items-center justify-center">
@@ -90,7 +89,7 @@ export default function Navigation() {
 
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="md:hidden p-2 rounded-lg hover:bg-white/10 transition-colors"
+          className="lg:hidden p-2 rounded-lg hover:bg-white/10 transition-colors ml-4"
         >
           {isMobileMenuOpen ? (
             <X className="w-6 h-6 text-white" />

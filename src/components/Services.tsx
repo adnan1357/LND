@@ -1,7 +1,11 @@
 import { useState } from 'react';
-import { ChevronDown, ChevronUp, ClipboardList, Calculator, FileText, TrendingUp, Shield } from './Icons';
+import { ChevronDown, ChevronUp, ClipboardList, Calculator, FileText, TrendingUp, Shield, ArrowRight } from './Icons';
 
-export default function Services() {
+interface ServicesProps {
+  onNavigate?: (section: string) => void;
+}
+
+export default function Services({ onNavigate }: ServicesProps) {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(0);
 
   const services = [
@@ -78,16 +82,67 @@ export default function Services() {
   ];
 
   return (
-    <section id="services" className="section-padding bg-dark-950">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-100 mb-4">
-            Comprehensive Consultancy Services
-          </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Expert quantity surveying and cost management solutions tailored to deliver exceptional value across your project lifecycle
-          </p>
+    <div className="bg-dark-950">
+      {/* Hero Section */}
+      <section className="relative h-screen w-full overflow-hidden flex items-center bg-dark-950">
+        <div className="max-w-7xl mx-auto px-6 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+            {/* Left Content - Title and Description */}
+            <div>
+              <h1 className="text-6xl lg:text-7xl xl:text-8xl font-bold text-gray-100 leading-tight mb-8 font-serif italic">
+                Our Services
+              </h1>
+              <p className="text-lg text-gray-400 leading-relaxed max-w-lg">
+                Expert quantity surveying and cost management solutions tailored to deliver 
+                exceptional value across your project lifecycle. Our comprehensive consultancy 
+                services ensure your projects are delivered on time, within budget, and to the 
+                highest quality standards.
+              </p>
+            </div>
+
+            {/* Right Content - Images and CTA */}
+            <div className="space-y-6">
+              {/* Talk to Us Button */}
+              <div className="mb-8">
+                <button
+                  onClick={() => onNavigate?.('contact')}
+                  className="inline-flex items-center gap-3 px-8 py-4 bg-transparent border-2 border-accent-500 text-accent-500 font-medium hover:bg-accent-500 hover:text-white transition-all duration-300 group"
+                >
+                  Talk to Us
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </button>
+              </div>
+
+              {/* Images Grid */}
+              <div className="grid grid-cols-2 gap-4">
+                <div className="relative rounded-lg overflow-hidden">
+                  <img
+                    src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                    alt="Cost management planning"
+                    className="w-full h-64 object-cover"
+                  />
+                </div>
+                <div className="relative rounded-lg overflow-hidden">
+                  <img
+                    src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                    alt="Project analysis"
+                    className="w-full h-64 object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </section>
+
+      {/* Services Content Section */}
+      <section id="services" className="section-padding bg-dark-950">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-100 mb-4">
+              Comprehensive Consultancy Services
+            </h2>
+          </div>
 
         <div className="mb-16 bg-gradient-to-br from-blue-50 to-amber-50 rounded-2xl p-8">
           <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Approach</h3>
@@ -172,5 +227,6 @@ export default function Services() {
         </div>
       </div>
     </section>
+    </div>
   );
 }
