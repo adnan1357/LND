@@ -1,15 +1,30 @@
+import ukImage from '../../images/uk.jpg';
+
 export default function AboutHomepage() {
   return (
-    <section id="about" className="py-24 bg-dark-900">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="about" className="min-h-screen flex items-center bg-dark-900 py-16 lg:py-0">
+      <div className="max-w-7xl mx-auto px-6 w-full">
+        {/* Flags */}
+        <div className="flex justify-center gap-6 mb-12">
+          <div className="flex items-center gap-3">
+            <span className="text-4xl">🇬🇧</span>
+            <span className="text-gray-400 text-sm font-medium">United Kingdom</span>
+          </div>
+          <div className="w-px h-8 bg-dark-700"></div>
+          <div className="flex items-center gap-3">
+            <span className="text-4xl">🇦🇪</span>
+            <span className="text-gray-400 text-sm font-medium">United Arab Emirates</span>
+          </div>
+        </div>
+        
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left Content - Image */}
           <div className="relative">
             <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-dark-700">
               <img
-                src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2053&q=80"
+                src={ukImage}
                 alt="Modern construction site with professional team"
-                className="w-full h-[600px] object-cover"
+                className="w-full h-[450px] object-cover"
               />
               {/* Dark overlay for better integration */}
               <div className="absolute inset-0 bg-gradient-to-t from-dark-900/20 to-transparent"></div>
@@ -18,16 +33,16 @@ export default function AboutHomepage() {
 
           {/* Right Content - Text */}
           <div className="lg:pl-8">
-            <h2 className="text-sm font-medium text-accent-400 mb-6 uppercase tracking-wide">
+            <h2 className="text-xs font-medium text-accent-400 mb-4 uppercase tracking-wide">
               Our Story
             </h2>
             
-            <h3 className="text-4xl lg:text-5xl xl:text-6xl font-serif italic text-gray-100 leading-tight mb-8">
+            <h3 className="text-3xl lg:text-4xl xl:text-5xl font-serif italic text-gray-100 leading-tight mb-6">
               We're a UK-based construction management agency that 
               <span className="text-accent-500"> specializes in sustainable project delivery.</span>
             </h3>
             
-            <div className="space-y-6 text-gray-300 leading-relaxed text-lg">
+            <div className="space-y-4 text-gray-300 leading-relaxed text-base">
               <p>
                 Welcome to LND Management Services, an international full-service 
                 construction management company. Since 2014, we've been 

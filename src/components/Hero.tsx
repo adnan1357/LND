@@ -1,4 +1,5 @@
 import { ArrowRight, Award, MapPin, Briefcase } from './Icons';
+import landingImage from '../../images/landing.jpg';
 
 interface HeroProps {
   onNavigate: (section: string) => void;
@@ -9,7 +10,7 @@ export default function Hero({ onNavigate }: HeroProps) {
     <section id="home" className="relative h-screen w-full overflow-hidden">
       {/* Full Background Image */}
       <img
-        src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+        src={landingImage}
         alt="Construction site with modern architecture"
         className="absolute inset-0 w-full h-full object-cover"
       />

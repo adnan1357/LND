@@ -52,7 +52,7 @@ export default function Values({ onNavigate }: ValuesProps) {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             {/* Left Content - Title and Description */}
             <div>
-              <h1 className="text-6xl lg:text-7xl xl:text-8xl font-bold text-gray-100 leading-tight mb-8 font-serif italic">
+              <h1 className="text-6xl lg:text-7xl xl:text-8xl font-bold text-gray-100 leading-tight mb-8 font-serif">
                 Our Values
               </h1>
               <p className="text-lg text-gray-400 leading-relaxed max-w-lg">
@@ -101,7 +101,7 @@ export default function Values({ onNavigate }: ValuesProps) {
       <section id="values" className="section-padding bg-dark-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-100 mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-100 mb-4 font-serif">
               Our Core Values
             </h2>
           </div>
@@ -112,7 +112,7 @@ export default function Values({ onNavigate }: ValuesProps) {
             return (
               <div
                 key={index}
-                className="card card-hover p-8"
+                className="bg-dark-900 border border-dark-800 rounded-xl p-8 hover:border-accent-600 transition-all duration-300"
               >
                 <div className={`w-16 h-16 bg-gradient-to-br ${value.color} rounded-lg flex items-center justify-center mb-6`}>
                   <Icon className="w-8 h-8 text-white" />
@@ -128,11 +128,11 @@ export default function Values({ onNavigate }: ValuesProps) {
           })}
         </div>
 
-        <div className="mt-16 gradient-accent rounded-2xl p-12 text-white text-center">
-          <h3 className="text-3xl font-bold mb-4">
+        <div className="mt-16 bg-dark-900 border border-dark-800 rounded-2xl p-12 text-center">
+          <h3 className="text-3xl font-bold mb-4 text-gray-100 font-serif">
             Values in Action
           </h3>
-          <p className="text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
             These values aren't just words on a page—they are the foundation of how we operate,
             make decisions, and serve our clients every day. They ensure that LNDMS remains a
             trusted partner committed to delivering exceptional results with integrity and professionalism.

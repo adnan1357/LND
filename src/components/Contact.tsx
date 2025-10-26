@@ -128,18 +128,18 @@ export default function Contact() {
                 </h3>
                 <div className="flex flex-wrap gap-3">
                   <a
-                    href="mailto:info@lndms.co.uk"
+                    href="mailto:Enquiries@lndms.ae"
                     className="inline-flex items-center gap-2 px-4 py-2 bg-dark-900 border border-dark-700 rounded-lg hover:border-accent-600 transition-all text-sm"
                   >
                     <Mail className="w-4 h-4 text-accent-400" />
-                    <span className="text-gray-300 text-xs">info@lndms.co.uk</span>
+                    <span className="text-gray-300 text-xs">Enquiries@lndms.ae</span>
                   </a>
                   <a
-                    href="tel:+442076489923"
+                    href="tel:+447539866877"
                     className="inline-flex items-center gap-2 px-4 py-2 bg-dark-900 border border-dark-700 rounded-lg hover:border-accent-600 transition-all text-sm"
                   >
                     <Phone className="w-4 h-4 text-accent-400" />
-                    <span className="text-gray-300 text-xs">+44 20 7648 9923</span>
+                    <span className="text-gray-300 text-xs">+44 7539 866877</span>
                   </a>
                 </div>
               </div>

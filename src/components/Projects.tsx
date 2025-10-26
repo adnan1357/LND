@@ -41,7 +41,7 @@ export default function Projects({ onNavigate }: ProjectsProps) {
       {/* Page Header */}
       <section className="pt-32 pb-16 px-6">
         <div className="max-w-7xl mx-auto">
-          <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-gray-100 mb-4 font-serif italic">
+          <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-gray-100 mb-4 font-serif">
             Case Studies
           </h1>
         </div>

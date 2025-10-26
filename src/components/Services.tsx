@@ -1,13 +1,10 @@
-import { useState } from 'react';
-import { ChevronDown, ChevronUp, ClipboardList, Calculator, FileText, TrendingUp, Shield, ArrowRight } from './Icons';
+import { ClipboardList, Calculator, FileText, TrendingUp, Shield, ArrowRight } from './Icons';
 
 interface ServicesProps {
   onNavigate?: (section: string) => void;
 }
 
 export default function Services({ onNavigate }: ServicesProps) {
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(0);
-
   const services = [
     {
       icon: ClipboardList,
@@ -89,7 +86,7 @@ export default function Services({ onNavigate }: ServicesProps) {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             {/* Left Content - Title and Description */}
             <div>
-              <h1 className="text-6xl lg:text-7xl xl:text-8xl font-bold text-gray-100 leading-tight mb-8 font-serif italic">
+              <h1 className="text-6xl lg:text-7xl xl:text-8xl font-bold text-gray-100 leading-tight mb-8 font-serif">
                 Our Services
               </h1>
               <p className="text-lg text-gray-400 leading-relaxed max-w-lg">
@@ -139,14 +136,14 @@ export default function Services({ onNavigate }: ServicesProps) {
       <section id="services" className="section-padding bg-dark-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-100 mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-100 mb-4 font-serif">
               Comprehensive Consultancy Services
             </h2>
           </div>
 
-        <div className="mb-16 bg-gradient-to-br from-blue-50 to-amber-50 rounded-2xl p-8">
-          <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Approach</h3>
-          <p className="text-lg text-gray-700 leading-relaxed">
+        <div className="mb-16 bg-dark-900 border border-dark-800 rounded-2xl p-8">
+          <h3 className="text-2xl font-bold text-gray-100 mb-4 font-serif">Our Approach</h3>
+          <p className="text-lg text-gray-300 leading-relaxed">
             At LNDMS, we provide end-to-end consultancy services that ensure your projects are delivered
             on time, within budget, and to the highest quality standards. Our team of BSc Honours, MCIOB,
             and MRICS qualified professionals brings over 10 years of experience managing projects valued
@@ -154,72 +151,118 @@ export default function Services({ onNavigate }: ServicesProps) {
           </p>
         </div>
 
-        <div className="space-y-4">
-          {services.map((service, index) => {
-            const Icon = service.icon;
-            const isExpanded = expandedIndex === index;
+        <div>
+          {/* First 3 cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
+            {services.slice(0, 3).map((service, index) => {
+              const Icon = service.icon;
 
-            return (
-              <div
-                key={index}
-                className="card card-hover overflow-hidden"
-              >
-                <button
-                  onClick={() => setExpandedIndex(isExpanded ? null : index)}
-                  className="w-full p-6 flex items-center justify-between text-left hover:bg-dark-800 transition-colors"
+              return (
+                <div
+                  key={index}
+                  className="bg-dark-900 border border-dark-800 rounded-xl p-8 hover:border-accent-600 transition-all duration-300 flex flex-col relative overflow-hidden min-h-[500px]"
                 >
-                  <div className="flex items-center gap-4 flex-1">
-                    <div className={`w-14 h-14 bg-gradient-to-br ${service.color} rounded-lg flex items-center justify-center flex-shrink-0`}>
-                      <Icon className="w-7 h-7 text-white" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-xl font-bold text-gray-100 mb-1">
-                        {service.title}
-                      </h3>
-                      <p className="text-gray-400">
-                        {service.description}
-                      </p>
-                    </div>
+                  {/* Large Number in Corner */}
+                  <div className="absolute top-4 right-4 text-8xl font-bold text-gray-800/30 leading-none">
+                    {index + 1}
                   </div>
-                  <div className="ml-4">
-                    {isExpanded ? (
-                      <ChevronUp className="w-6 h-6 text-gray-500" />
-                    ) : (
-                      <ChevronDown className="w-6 h-6 text-gray-500" />
-                    )}
-                  </div>
-                </button>
 
-                {isExpanded && (
-                  <div className="px-6 pb-6 border-t border-dark-700 bg-dark-800">
-                    <div className="pt-6 pl-18">
-                      <h4 className="text-lg font-semibold text-gray-100 mb-4">
-                        Service Includes:
-                      </h4>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        {service.details.map((detail, detailIndex) => (
-                          <div
-                            key={detailIndex}
-                            className="flex items-start gap-3"
-                          >
-                            <div className="w-2 h-2 bg-accent-500 rounded-full mt-2 flex-shrink-0"></div>
-                            <span className="text-gray-300">{detail}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
+                  {/* Icon */}
+                  <div className="relative z-10 mb-6">
+                    <Icon className="w-16 h-16 text-accent-500" />
                   </div>
-                )}
-              </div>
-            );
-          })}
+                  
+                  {/* Title */}
+                  <h3 className="text-2xl font-bold text-gray-100 mb-4 uppercase tracking-wide relative z-10">
+                    {service.title}
+                  </h3>
+                  
+                  {/* Description */}
+                  <p className="text-gray-400 mb-6 leading-relaxed relative z-10 flex-grow">
+                    {service.description}
+                  </p>
+
+                  {/* Service Details */}
+                  <div className="relative z-10 mb-6">
+                    <ul className="space-y-2">
+                      {service.details.map((detail, detailIndex) => (
+                        <li
+                          key={detailIndex}
+                          className="flex items-start gap-2 text-sm text-gray-300"
+                        >
+                          <div className="w-1.5 h-1.5 bg-accent-500 rounded-full mt-1.5 flex-shrink-0"></div>
+                          <span>{detail}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Colored Accent Circle at Bottom */}
+                  <div className="absolute -bottom-12 -left-12 w-32 h-32 bg-accent-500 rounded-full opacity-80"></div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Last 2 cards centered */}
+          <div className="flex flex-wrap justify-center gap-8">
+            {services.slice(3).map((service, index) => {
+              const Icon = service.icon;
+              const actualIndex = index + 3;
+
+              return (
+                <div
+                  key={actualIndex}
+                  className="bg-dark-900 border border-dark-800 rounded-xl p-8 hover:border-accent-600 transition-all duration-300 flex flex-col relative overflow-hidden min-h-[500px] w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)]"
+                >
+                  {/* Large Number in Corner */}
+                  <div className="absolute top-4 right-4 text-8xl font-bold text-gray-800/30 leading-none">
+                    {actualIndex + 1}
+                  </div>
+
+                  {/* Icon */}
+                  <div className="relative z-10 mb-6">
+                    <Icon className="w-16 h-16 text-accent-500" />
+                  </div>
+                  
+                  {/* Title */}
+                  <h3 className="text-2xl font-bold text-gray-100 mb-4 uppercase tracking-wide relative z-10">
+                    {service.title}
+                  </h3>
+                  
+                  {/* Description */}
+                  <p className="text-gray-400 mb-6 leading-relaxed relative z-10 flex-grow">
+                    {service.description}
+                  </p>
+
+                  {/* Service Details */}
+                  <div className="relative z-10 mb-6">
+                    <ul className="space-y-2">
+                      {service.details.map((detail, detailIndex) => (
+                        <li
+                          key={detailIndex}
+                          className="flex items-start gap-2 text-sm text-gray-300"
+                        >
+                          <div className="w-1.5 h-1.5 bg-accent-500 rounded-full mt-1.5 flex-shrink-0"></div>
+                          <span>{detail}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Colored Accent Circle at Bottom */}
+                  <div className="absolute -bottom-12 -left-12 w-32 h-32 bg-accent-500 rounded-full opacity-80"></div>
+                </div>
+              );
+            })}
+          </div>
         </div>
 
-        <div className="mt-16 gradient-accent rounded-2xl p-12 text-white text-center">
-          <h3 className="text-3xl font-bold mb-4">
+        <div className="mt-16 bg-dark-900 border border-dark-800 rounded-2xl p-12 text-center">
+          <h3 className="text-3xl font-bold mb-4 text-gray-100 font-serif">
             Building Safety Regulations 2022 Expertise
           </h3>
-          <p className="text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Our team has specialist knowledge and extensive experience in Building Safety Regulations 2022
             compliance and fire safety remediation works. We guide clients through complex regulatory
             requirements, ensuring full compliance while managing costs effectively.

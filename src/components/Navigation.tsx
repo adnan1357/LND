@@ -35,8 +35,15 @@ export default function Navigation() {
     setIsMobileMenuOpen(false);
   };
 
+  const handleNavClick = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setIsMobileMenuOpen(false);
+  };
+
   return (
-    <nav className="absolute top-0 left-0 right-0 z-50 px-6 py-6">
+    <nav className={`fixed top-0 left-0 right-0 z-50 px-6 py-6 transition-all duration-300 ${
+      isScrolled ? 'bg-black shadow-lg' : 'bg-transparent'
+    }`}>
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo - Left */}
         <div className="flex items-center">
@@ -59,10 +66,11 @@ export default function Navigation() {
               <Link
                 key={item.path}
                 to={item.path}
+                onClick={handleNavClick}
                 className={`text-sm font-medium transition-colors whitespace-nowrap ${
                   isActive(item.path)
                     ? 'text-white'
-                    : 'text-white/80 hover:text-white'
+                    : isScrolled ? 'text-white/80 hover:text-white' : 'text-white/80 hover:text-white'
                 }`}
               >
                 {item.label}
@@ -74,7 +82,10 @@ export default function Navigation() {
         {/* Contact Info - Right */}
         <div className="flex items-center">
           <div className="hidden lg:flex items-center space-x-4">
-            <span className="text-white/80 text-sm whitespace-nowrap">+44 (0) 20 XXXX XXXX</span>
+            <div className="flex flex-col text-right">
+              <span className="text-sm whitespace-nowrap text-white/80">🇬🇧 +44 7539 866877</span>
+              <span className="text-sm whitespace-nowrap text-white/80">🇦🇪 +971 50 439 5060</span>
+            </div>
             <button
               onClick={() => handleMobileMenuClose()}
               className="inline-flex items-center gap-2 px-4 py-2 bg-white text-black rounded-full text-sm font-medium hover:bg-gray-100 transition-colors whitespace-nowrap"
@@ -106,7 +117,7 @@ export default function Navigation() {
               <Link
                 key={item.path}
                 to={item.path}
-                onClick={handleMobileMenuClose}
+                onClick={handleNavClick}
                 className={`block w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
                   isActive(item.path)
                     ? 'bg-white/20 text-white'

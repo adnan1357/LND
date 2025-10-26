@@ -14,35 +14,35 @@ export default function ServicesOverview({ onNavigate }: ServicesOverviewProps) 
       title: 'Project Management',
       description: 'Comprehensive project oversight ensuring successful delivery from inception to completion.',
       details: 'Our project management approach focuses on strategic planning, resource coordination, and stakeholder communication. We ensure seamless navigation through complex regulatory requirements while maintaining the highest standards of professional conduct.',
-      image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
     },
     {
       icon: Calculator,
       title: 'Cost Planning & Management',
       description: 'Detailed financial planning and cost estimation to ensure budget certainty.',
       details: 'We provide comprehensive cost control and value engineering throughout your project lifecycle. Our expertise in Bills of Quantities preparation and whole life costing analysis ensures optimal financial outcomes.',
-      image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2026&q=80',
+      image: 'https://images.unsplash.com/photo-1554224154-26032ffc0d07?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
     },
     {
       icon: FileText,
       title: 'Procurement & Tendering',
       description: 'Strategic procurement advice and comprehensive tender management services.',
       details: 'Our procurement specialists guide you through complex tendering processes, contractor selection, and contract negotiations. We ensure competitive pricing while maintaining quality standards.',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
     },
     {
       icon: TrendingUp,
       title: 'Risk & Value Management',
       description: 'Proactive risk assessment and value optimization strategies.',
       details: 'We identify potential risks early and implement mitigation strategies while maximizing project value. Our approach ensures sustainable outcomes and long-term success.',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2015&q=80',
+      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2015&q=80',
     },
     {
       icon: Shield,
       title: 'Building Safety Compliance',
       description: 'Expert guidance on Building Safety Regulations 2022 and fire safety works.',
       details: 'Specialized knowledge in Building Safety Regulations 2022 compliance and fire safety remediation works. We ensure full regulatory compliance while managing costs effectively.',
-      image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      image: 'https://images.unsplash.com/photo-1621905251918-48416bd8575a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80',
     },
   ];
 
@@ -111,33 +111,14 @@ export default function ServicesOverview({ onNavigate }: ServicesOverviewProps) 
             })}
           </div>
 
-          {/* Right Side - Images */}
+          {/* Right Side - Image */}
           <div className="relative">
-            <div className="grid grid-cols-2 gap-3">
-              {/* Main large image */}
-              <div className="col-span-2 rounded-xl overflow-hidden shadow-2xl border border-dark-700">
-                <img
-                  src={services[activeService].image}
-                  alt={services[activeService].title}
-                  className="w-full h-48 object-cover transition-all duration-500"
-                />
-              </div>
-              
-              {/* Two smaller images */}
-              <div className="rounded-lg overflow-hidden shadow-lg border border-dark-700">
-                <img
-                  src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                  alt="Construction planning"
-                  className="w-full h-32 object-cover"
-                />
-              </div>
-              <div className="rounded-lg overflow-hidden shadow-lg border border-dark-700">
-                <img
-                  src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                  alt="Construction site"
-                  className="w-full h-32 object-cover"
-                />
-              </div>
+            <div className="rounded-xl overflow-hidden shadow-2xl border border-dark-700">
+              <img
+                src={services[activeService].image}
+                alt={services[activeService].title}
+                className="w-full h-[350px] object-cover transition-all duration-500"
+              />
             </div>
           </div>
         </div>

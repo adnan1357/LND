@@ -80,14 +80,13 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <Mail className="w-5 h-5 text-accent-500 mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="text-gray-300">info@lndms.co.uk</p>
-                  <p className="text-gray-300">enquiries@lndms.co.uk</p>
+                  <p className="text-gray-300">Enquiries@lndms.ae</p>
                 </div>
               </li>
               <li className="flex items-start gap-3">
                 <Phone className="w-5 h-5 text-accent-500 mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="text-gray-300">+44 (0) 20 XXXX XXXX</p>
+                  <p className="text-gray-300">+44 7539 866877</p>
                   <p className="text-sm text-gray-400">Mon - Fri, 9:00 AM - 6:00 PM</p>
                 </div>
               </li>
