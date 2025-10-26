@@ -39,23 +39,23 @@ export default function Projects({ onNavigate }: ProjectsProps) {
   return (
     <div className="bg-dark-950 min-h-screen">
       {/* Page Header */}
-      <section className="pt-32 pb-16 px-6">
+      <section className="pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
-          <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-gray-100 mb-4 font-serif">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-gray-100 mb-4 font-serif">
             Case Studies
           </h1>
         </div>
       </section>
 
       {/* Masonry Grid Section */}
-      <section className="pb-20 px-6">
+      <section className="pb-12 sm:pb-16 md:pb-20 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           {/* Grid Container */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
             {projects.map((project, index) => (
               <div
                 key={index}
-                className="group relative overflow-hidden rounded-xl border border-dark-800 hover:border-dark-700 transition-all duration-300 h-[500px]"
+                className="group relative overflow-hidden rounded-xl border border-dark-800 hover:border-dark-700 transition-all duration-300 h-[400px] sm:h-[450px] md:h-[500px]"
               >
                 {/* Background Image */}
                 <div className="absolute inset-0">
@@ -70,28 +70,28 @@ export default function Projects({ onNavigate }: ProjectsProps) {
                 <div className={`absolute inset-0 bg-gradient-to-br ${project.bgColor} transition-opacity duration-300`}></div>
 
                 {/* Content Overlay */}
-                <div className="relative h-full flex flex-col justify-between p-8 md:p-10 text-white">
+                <div className="relative h-full flex flex-col justify-between p-6 sm:p-8 md:p-10 text-white">
                   {/* Top Content */}
                   <div>
-                    <span className="inline-block px-4 py-2 bg-accent-600/90 backdrop-blur-sm rounded-full text-xs font-semibold tracking-wide mb-6">
+                    <span className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 bg-accent-600/90 backdrop-blur-sm rounded-full text-[10px] sm:text-xs font-semibold tracking-wide mb-4 sm:mb-6">
                       {project.category}
                     </span>
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-4">
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-3 sm:mb-4">
                       {project.title}
                     </h2>
                   </div>
 
                   {/* Bottom Content */}
                   <div>
-                    <p className="text-white/90 text-base md:text-lg leading-relaxed mb-6 max-w-xl">
+                    <p className="text-white/90 text-sm sm:text-base md:text-lg leading-relaxed mb-4 sm:mb-6 max-w-xl">
                       {project.description}
                     </p>
                     <button 
                       onClick={() => onNavigate?.('contact')}
-                      className="inline-flex items-center gap-2 text-accent-400 font-semibold text-sm uppercase tracking-wider hover:gap-3 hover:text-accent-300 transition-all duration-300"
+                      className="inline-flex items-center gap-2 text-accent-400 font-semibold text-xs sm:text-sm uppercase tracking-wider hover:gap-3 hover:text-accent-300 transition-all duration-300"
                     >
                       READ MORE 
-                      <ArrowRight className="w-5 h-5" />
+                      <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
                     </button>
                   </div>
                 </div>
@@ -102,29 +102,29 @@ export default function Projects({ onNavigate }: ProjectsProps) {
       </section>
 
       {/* Stats Section */}
-      <section className="pb-20 px-6">
+      <section className="pb-12 sm:pb-16 md:pb-20 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="bg-dark-900 border border-dark-800 rounded-2xl p-12 shadow-lg">
+          <div className="bg-dark-900 border border-dark-800 rounded-2xl p-6 sm:p-8 md:p-12 shadow-lg">
             <div className="text-center">
-              <h3 className="text-3xl md:text-4xl font-bold text-gray-100 mb-4">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-100 mb-3 sm:mb-4">
                 Project Expertise
               </h3>
-              <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-12">
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-400 max-w-3xl mx-auto mb-8 sm:mb-12 px-4">
                 Our portfolio demonstrates extensive experience in managing complex building safety projects,
                 particularly in fire safety remediation and Building Safety Regulations 2022 compliance.
               </p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-                <div className="bg-dark-800 border border-dark-700 rounded-xl p-8 hover:border-accent-600 transition-all duration-300">
-                  <p className="text-4xl font-bold text-accent-500 mb-2">£85m+</p>
-                  <p className="text-gray-300 font-medium">Total Project Value</p>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 max-w-4xl mx-auto">
+                <div className="bg-dark-800 border border-dark-700 rounded-xl p-6 sm:p-8 hover:border-accent-600 transition-all duration-300">
+                  <p className="text-3xl sm:text-4xl font-bold text-accent-500 mb-2">£85m+</p>
+                  <p className="text-gray-300 font-medium text-sm sm:text-base">Total Project Value</p>
                 </div>
-                <div className="bg-dark-800 border border-dark-700 rounded-xl p-8 hover:border-accent-600 transition-all duration-300">
-                  <p className="text-4xl font-bold text-accent-500 mb-2">4</p>
-                  <p className="text-gray-300 font-medium">Major Projects</p>
+                <div className="bg-dark-800 border border-dark-700 rounded-xl p-6 sm:p-8 hover:border-accent-600 transition-all duration-300">
+                  <p className="text-3xl sm:text-4xl font-bold text-accent-500 mb-2">4</p>
+                  <p className="text-gray-300 font-medium text-sm sm:text-base">Major Projects</p>
                 </div>
-                <div className="bg-dark-800 border border-dark-700 rounded-xl p-8 hover:border-accent-600 transition-all duration-300">
-                  <p className="text-4xl font-bold text-accent-500 mb-2">100%</p>
-                  <p className="text-gray-300 font-medium">Client Satisfaction</p>
+                <div className="bg-dark-800 border border-dark-700 rounded-xl p-6 sm:p-8 hover:border-accent-600 transition-all duration-300">
+                  <p className="text-3xl sm:text-4xl font-bold text-accent-500 mb-2">100%</p>
+                  <p className="text-gray-300 font-medium text-sm sm:text-base">Client Satisfaction</p>
                 </div>
               </div>
             </div>

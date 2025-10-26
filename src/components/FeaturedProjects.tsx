@@ -27,33 +27,33 @@ export default function FeaturedProjects({ onNavigate }: FeaturedProjectsProps) 
   ];
 
   return (
-    <section className="h-screen flex items-center bg-dark-950 py-12 lg:py-0">
-      <div className="max-w-7xl mx-auto px-6 w-full">
+    <section className="min-h-screen flex items-center bg-dark-950 py-12 sm:py-16 lg:py-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full">
         {/* Header */}
-        <div className="mb-8">
-          <h2 className="text-xs font-medium text-accent-400 mb-3 uppercase tracking-wide">
+        <div className="mb-6 sm:mb-8">
+          <h2 className="text-xs font-medium text-accent-400 mb-2 sm:mb-3 uppercase tracking-wide">
             Portfolio
           </h2>
-          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
-            <h3 className="text-2xl lg:text-3xl xl:text-4xl font-serif italic text-gray-100 leading-tight max-w-2xl">
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-3 sm:gap-4">
+            <h3 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-serif italic text-gray-100 leading-tight max-w-2xl">
               Featured Projects
               <span className="text-accent-500"> that define excellence</span>
             </h3>
-            <p className="text-sm text-gray-400 max-w-xl leading-relaxed">
+            <p className="text-xs sm:text-sm text-gray-400 max-w-xl leading-relaxed">
               Delivering high-value construction management across the UK and UAE
             </p>
           </div>
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8">
           {projects.map((project, index) => (
             <div
               key={index}
               className="group relative bg-dark-900 rounded-2xl overflow-hidden border border-dark-700 hover:border-accent-500/30 transition-all duration-500"
             >
               {/* Image */}
-              <div className="h-48 relative overflow-hidden">
+              <div className="h-40 sm:h-48 relative overflow-hidden">
                 <img
                   src={project.image}
                   alt={project.title}
@@ -62,44 +62,44 @@ export default function FeaturedProjects({ onNavigate }: FeaturedProjectsProps) 
                 <div className="absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/60 to-transparent"></div>
                 
                 {/* Project Number Badge */}
-                <div className="absolute top-4 right-4">
-                  <div className="w-10 h-10 bg-accent-600 rounded-full flex items-center justify-center text-white font-bold text-base">
+                <div className="absolute top-3 right-3 sm:top-4 sm:right-4">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-accent-600 rounded-full flex items-center justify-center text-white font-bold text-sm sm:text-base">
                     0{index + 1}
                   </div>
                 </div>
               </div>
 
               {/* Content */}
-              <div className="p-6">
-                <div className="mb-3">
-                  <h3 className="text-xl lg:text-2xl font-serif italic text-white mb-1 group-hover:text-accent-400 transition-colors">
+              <div className="p-4 sm:p-6">
+                <div className="mb-2 sm:mb-3">
+                  <h3 className="text-lg sm:text-xl lg:text-2xl font-serif italic text-white mb-1 group-hover:text-accent-400 transition-colors">
                     {project.title}
                   </h3>
                   <p className="text-xs text-accent-400 uppercase tracking-wide font-medium">{project.client}</p>
                 </div>
 
-                <p className="text-gray-300 text-sm mb-4 leading-relaxed">
+                <p className="text-gray-300 text-xs sm:text-sm mb-3 sm:mb-4 leading-relaxed">
                   {project.scope}
                 </p>
 
                 {/* Meta Info */}
-                <div className="flex items-center gap-6 pt-4 border-t border-dark-700">
-                  <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-lg bg-dark-800 flex items-center justify-center">
-                      <Banknote className="w-4 h-4 text-accent-500" />
+                <div className="flex items-center gap-4 sm:gap-6 pt-3 sm:pt-4 border-t border-dark-700">
+                  <div className="flex items-center gap-1.5 sm:gap-2">
+                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-dark-800 flex items-center justify-center flex-shrink-0">
+                      <Banknote className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-accent-500" />
                     </div>
-                    <div>
-                      <p className="text-xs text-gray-500 uppercase tracking-wide">Value</p>
-                      <p className="text-sm font-bold text-white">{project.value}</p>
+                    <div className="min-w-0">
+                      <p className="text-[10px] sm:text-xs text-gray-500 uppercase tracking-wide">Value</p>
+                      <p className="text-xs sm:text-sm font-bold text-white">{project.value}</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-lg bg-dark-800 flex items-center justify-center">
-                      <Calendar className="w-4 h-4 text-accent-500" />
+                  <div className="flex items-center gap-1.5 sm:gap-2">
+                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-dark-800 flex items-center justify-center flex-shrink-0">
+                      <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-accent-500" />
                     </div>
-                    <div>
-                      <p className="text-xs text-gray-500 uppercase tracking-wide">Completed</p>
-                      <p className="text-sm font-bold text-white">{project.completed}</p>
+                    <div className="min-w-0">
+                      <p className="text-[10px] sm:text-xs text-gray-500 uppercase tracking-wide">Completed</p>
+                      <p className="text-xs sm:text-sm font-bold text-white truncate">{project.completed}</p>
                     </div>
                   </div>
                 </div>
@@ -112,10 +112,10 @@ export default function FeaturedProjects({ onNavigate }: FeaturedProjectsProps) 
         <div className="text-center">
           <button
             onClick={() => onNavigate('projects')}
-            className="inline-flex items-center gap-3 px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white font-medium hover:bg-white/20 transition-all duration-300 group"
+            className="inline-flex items-center gap-2 sm:gap-3 px-6 py-3 sm:px-8 sm:py-4 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-sm sm:text-base text-white font-medium hover:bg-white/20 transition-all duration-300 group"
           >
             View All Projects
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
           </button>
         </div>
       </div>

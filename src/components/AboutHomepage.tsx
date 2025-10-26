@@ -2,29 +2,29 @@ import ukImage from '../../images/uk.jpg';
 
 export default function AboutHomepage() {
   return (
-    <section id="about" className="min-h-screen flex items-center bg-dark-900 py-16 lg:py-0">
-      <div className="max-w-7xl mx-auto px-6 w-full">
+    <section id="about" className="min-h-screen flex items-center bg-dark-900 py-12 sm:py-16 lg:py-0">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full">
         {/* Flags */}
-        <div className="flex justify-center gap-6 mb-12">
-          <div className="flex items-center gap-3">
-            <span className="text-4xl">🇬🇧</span>
-            <span className="text-gray-400 text-sm font-medium">United Kingdom</span>
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 mb-8 sm:mb-12">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <span className="text-3xl sm:text-4xl">🇬🇧</span>
+            <span className="text-gray-400 text-xs sm:text-sm font-medium">United Kingdom</span>
           </div>
-          <div className="w-px h-8 bg-dark-700"></div>
-          <div className="flex items-center gap-3">
-            <span className="text-4xl">🇦🇪</span>
-            <span className="text-gray-400 text-sm font-medium">United Arab Emirates</span>
+          <div className="hidden sm:block w-px h-8 bg-dark-700"></div>
+          <div className="flex items-center gap-2 sm:gap-3">
+            <span className="text-3xl sm:text-4xl">🇦🇪</span>
+            <span className="text-gray-400 text-xs sm:text-sm font-medium">United Arab Emirates</span>
           </div>
         </div>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
           {/* Left Content - Image */}
-          <div className="relative">
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-dark-700">
+          <div className="relative order-2 lg:order-1">
+            <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-dark-700">
               <img
                 src={ukImage}
                 alt="Modern construction site with professional team"
-                className="w-full h-[450px] object-cover"
+                className="w-full h-[300px] sm:h-[400px] lg:h-[450px] object-cover"
               />
               {/* Dark overlay for better integration */}
               <div className="absolute inset-0 bg-gradient-to-t from-dark-900/20 to-transparent"></div>
@@ -32,17 +32,17 @@ export default function AboutHomepage() {
           </div>
 
           {/* Right Content - Text */}
-          <div className="lg:pl-8">
-            <h2 className="text-xs font-medium text-accent-400 mb-4 uppercase tracking-wide">
+          <div className="lg:pl-8 order-1 lg:order-2">
+            <h2 className="text-xs font-medium text-accent-400 mb-3 sm:mb-4 uppercase tracking-wide">
               Our Story
             </h2>
             
-            <h3 className="text-3xl lg:text-4xl xl:text-5xl font-serif italic text-gray-100 leading-tight mb-6">
+            <h3 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-serif italic text-gray-100 leading-tight mb-4 sm:mb-6">
               We're a UK-based construction management agency that 
               <span className="text-accent-500"> specializes in sustainable project delivery.</span>
             </h3>
             
-            <div className="space-y-4 text-gray-300 leading-relaxed text-base">
+            <div className="space-y-3 sm:space-y-4 text-gray-300 leading-relaxed text-sm sm:text-base">
               <p>
                 Welcome to LND Management Services, an international full-service 
                 construction management company. Since 2014, we've been 

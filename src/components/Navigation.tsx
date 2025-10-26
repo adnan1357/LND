@@ -41,7 +41,7 @@ export default function Navigation() {
   };
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 px-6 py-6 transition-all duration-300 ${
+    <nav className={`fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 py-4 md:py-6 transition-all duration-300 ${
       isScrolled ? 'bg-black shadow-lg' : 'bg-transparent'
     }`}>
       <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -54,14 +54,14 @@ export default function Navigation() {
             <img 
               src="/images/logo.png" 
               alt="LNDMS Logo" 
-              className="h-12 w-auto"
+              className="h-10 sm:h-12 w-auto"
             />
           </Link>
         </div>
 
         {/* Centered Navigation */}
-        <div className="absolute left-1/2 transform -translate-x-1/2">
-          <div className="hidden lg:flex items-center space-x-6 xl:space-x-8">
+        <div className="absolute left-1/2 transform -translate-x-1/2 hidden lg:block">
+          <div className="flex items-center space-x-6 xl:space-x-8">
             {navItems.map((item) => (
               <Link
                 key={item.path}
@@ -100,7 +100,7 @@ export default function Navigation() {
 
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="lg:hidden p-2 rounded-lg hover:bg-white/10 transition-colors ml-4"
+          className="lg:hidden p-2 rounded-lg hover:bg-white/10 transition-colors"
         >
           {isMobileMenuOpen ? (
             <X className="w-6 h-6 text-white" />
@@ -111,8 +111,8 @@ export default function Navigation() {
       </div>
 
       {isMobileMenuOpen && (
-        <div className="md:hidden mt-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl overflow-hidden mx-6">
-          <div className="px-6 py-4 space-y-2">
+        <div className="lg:hidden mt-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl overflow-hidden">
+          <div className="px-4 py-4 space-y-2">
             {navItems.map((item) => (
               <Link
                 key={item.path}
@@ -127,6 +127,17 @@ export default function Navigation() {
                 {item.label}
               </Link>
             ))}
+            {/* Mobile Contact Info */}
+            <div className="pt-4 mt-4 border-t border-white/20">
+              <div className="space-y-2 px-4">
+                <a href="tel:+447539866877" className="block text-sm text-white/80 hover:text-white">
+                  🇬🇧 +44 7539 866877
+                </a>
+                <a href="tel:+971504395060" className="block text-sm text-white/80 hover:text-white">
+                  🇦🇪 +971 50 439 5060
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       )}

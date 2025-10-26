@@ -24,26 +24,26 @@ export default function Contact() {
   };
 
   return (
-    <div className="bg-dark-950 h-screen overflow-hidden flex flex-col">
+    <div className="bg-dark-950 min-h-screen flex flex-col">
       {/* Header Section */}
-      <section className="pt-24 pb-8 px-6 flex-shrink-0">
+      <section className="pt-20 sm:pt-24 pb-6 sm:pb-8 px-4 sm:px-6 flex-shrink-0">
         <div className="max-w-6xl mx-auto text-center">
           <p className="text-xs font-semibold text-accent-400 uppercase tracking-wider mb-2">
             CONTACT US
           </p>
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-100 mb-3">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-100 mb-2 sm:mb-3">
             Get in touch with us
           </h1>
-          <p className="text-base text-gray-400 max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base text-gray-400 max-w-2xl mx-auto px-4">
             Fill out the form below or schedule a meeting with us at your convenience.
           </p>
         </div>
       </section>
 
       {/* Main Content Section */}
-      <section className="flex-1 px-6 pb-8 overflow-auto">
+      <section className="flex-1 px-4 sm:px-6 pb-6 sm:pb-8 overflow-auto">
         <div className="max-w-6xl mx-auto h-full">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 h-full">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 h-full">
             {/* Left Side - Form */}
             <div className="flex flex-col">
               <form onSubmit={handleSubmit} className="space-y-4">
@@ -122,23 +122,23 @@ export default function Contact() {
               </form>
 
               {/* Contact Methods */}
-              <div className="mt-6">
-                <h3 className="text-sm font-semibold text-gray-100 mb-3">
+              <div className="mt-4 sm:mt-6">
+                <h3 className="text-xs sm:text-sm font-semibold text-gray-100 mb-2 sm:mb-3">
                   You can also Contact Us via
                 </h3>
-                <div className="flex flex-wrap gap-3">
+                <div className="flex flex-col sm:flex-row sm:flex-wrap gap-2 sm:gap-3">
                   <a
                     href="mailto:Enquiries@lndms.ae"
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-dark-900 border border-dark-700 rounded-lg hover:border-accent-600 transition-all text-sm"
+                    className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 bg-dark-900 border border-dark-700 rounded-lg hover:border-accent-600 transition-all text-sm"
                   >
-                    <Mail className="w-4 h-4 text-accent-400" />
+                    <Mail className="w-4 h-4 text-accent-400 flex-shrink-0" />
                     <span className="text-gray-300 text-xs">Enquiries@lndms.ae</span>
                   </a>
                   <a
                     href="tel:+447539866877"
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-dark-900 border border-dark-700 rounded-lg hover:border-accent-600 transition-all text-sm"
+                    className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 bg-dark-900 border border-dark-700 rounded-lg hover:border-accent-600 transition-all text-sm"
                   >
-                    <Phone className="w-4 h-4 text-accent-400" />
+                    <Phone className="w-4 h-4 text-accent-400 flex-shrink-0" />
                     <span className="text-gray-300 text-xs">+44 7539 866877</span>
                   </a>
                 </div>
@@ -146,37 +146,37 @@ export default function Contact() {
             </div>
 
             {/* Right Side - Benefits & Locations */}
-            <div className="space-y-6">
+            <div className="space-y-4 sm:space-y-6">
               <div>
-                <h3 className="text-lg font-bold text-gray-100 mb-4">
+                <h3 className="text-base sm:text-lg font-bold text-gray-100 mb-3 sm:mb-4">
                   With our services you can
                 </h3>
-                <div className="space-y-3">
+                <div className="space-y-2 sm:space-y-3">
                   <div className="flex items-start gap-2">
-                    <CheckCircle2 className="w-5 h-5 text-accent-400 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-300 text-sm">Expert quantity surveying and cost management</span>
+                    <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-accent-400 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-300 text-xs sm:text-sm">Expert quantity surveying and cost management</span>
                   </div>
                   <div className="flex items-start gap-2">
-                    <CheckCircle2 className="w-5 h-5 text-accent-400 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-300 text-sm">Building Safety Regulations 2022 compliance expertise</span>
+                    <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-accent-400 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-300 text-xs sm:text-sm">Building Safety Regulations 2022 compliance expertise</span>
                   </div>
                   <div className="flex items-start gap-2">
-                    <CheckCircle2 className="w-5 h-5 text-accent-400 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-300 text-sm">Comprehensive project management from inception to completion</span>
+                    <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-accent-400 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-300 text-xs sm:text-sm">Comprehensive project management from inception to completion</span>
                   </div>
                   <div className="flex items-start gap-2">
-                    <CheckCircle2 className="w-5 h-5 text-accent-400 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-300 text-sm">Proven track record with £85m+ in project value</span>
+                    <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-accent-400 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-300 text-xs sm:text-sm">Proven track record with £85m+ in project value</span>
                   </div>
                 </div>
               </div>
 
               {/* Locations */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="bg-dark-900 border border-dark-700 rounded-lg p-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                <div className="bg-dark-900 border border-dark-700 rounded-lg p-3 sm:p-4">
                   <div className="flex items-center gap-2 mb-2">
                     <MapPin className="w-4 h-4 text-accent-400" />
-                    <h4 className="font-semibold text-gray-100 text-sm">UK</h4>
+                    <h4 className="font-semibold text-gray-100 text-xs sm:text-sm">UK</h4>
                   </div>
                   <p className="text-gray-400 text-xs leading-relaxed">
                     London, England<br />
@@ -184,10 +184,10 @@ export default function Contact() {
                   </p>
                 </div>
 
-                <div className="bg-dark-900 border border-dark-700 rounded-lg p-4">
+                <div className="bg-dark-900 border border-dark-700 rounded-lg p-3 sm:p-4">
                   <div className="flex items-center gap-2 mb-2">
                     <MapPin className="w-4 h-4 text-accent-400" />
-                    <h4 className="font-semibold text-gray-100 text-sm">UAE</h4>
+                    <h4 className="font-semibold text-gray-100 text-xs sm:text-sm">UAE</h4>
                   </div>
                   <p className="text-gray-400 text-xs leading-relaxed">
                     Dubai<br />
