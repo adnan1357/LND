@@ -31,12 +31,7 @@ export default function Navigation() {
     return location.pathname === path;
   };
 
-  const handleMobileMenuClose = () => {
-    setIsMobileMenuOpen(false);
-  };
-
   const handleNavClick = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
     setIsMobileMenuOpen(false);
   };
 
@@ -49,6 +44,7 @@ export default function Navigation() {
         <div className="flex items-center">
           <Link
             to="/"
+            onClick={handleNavClick}
             className="flex items-center space-x-3"
           >
             <img 
@@ -86,15 +82,16 @@ export default function Navigation() {
               <span className="text-sm whitespace-nowrap text-white/80">🇬🇧 +44 7539 866877</span>
               <span className="text-sm whitespace-nowrap text-white/80">🇦🇪 +971 50 439 5060</span>
             </div>
-            <button
-              onClick={() => handleMobileMenuClose()}
+            <Link
+              to="/contact"
+              onClick={handleNavClick}
               className="inline-flex items-center gap-2 px-4 py-2 bg-white text-black rounded-full text-sm font-medium hover:bg-gray-100 transition-colors whitespace-nowrap"
             >
               Get in Touch
               <div className="w-6 h-6 bg-black text-white rounded-full flex items-center justify-center">
                 <Building2 className="w-3 h-3" />
               </div>
-            </button>
+            </Link>
           </div>
         </div>
 

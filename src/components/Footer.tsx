@@ -1,8 +1,29 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Building2, Mail, Phone, MapPin } from './Icons';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const location = useLocation();
+
+  const handleServiceClick = (e: React.MouseEvent, serviceId: string) => {
+    // If we're already on the services page, scroll directly to the element
+    if (location.pathname === '/services') {
+      e.preventDefault();
+      const element = document.getElementById(serviceId);
+      if (element) {
+        // Use offset scrolling to account for any fixed headers
+        const yOffset = -100;
+        const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+        
+        // Dispatch custom event to trigger highlight in Services component
+        window.dispatchEvent(new CustomEvent('highlightService', { detail: serviceId }));
+      }
+      // Update the URL hash without triggering navigation
+      window.history.pushState(null, '', `/services#${serviceId}`);
+    }
+    // Otherwise, let the Link handle the navigation normally
+  };
 
   const quickLinks = [
     { path: '/', label: 'Home' },
@@ -12,11 +33,11 @@ export default function Footer() {
   ];
 
   const services = [
-    'Project Management',
-    'Cost Planning',
-    'Procurement & Tendering',
-    'Cost Management',
-    'Risk & Value Management',
+    { label: 'Project Management', id: 'project-management' },
+    { label: 'Cost Planning', id: 'cost-planning' },
+    { label: 'Procurement & Tendering', id: 'procurement-tendering' },
+    { label: 'Post Contract Cost Management', id: 'post-contract-management' },
+    { label: 'Risk & Value Management', id: 'risk-value-management' },
   ];
 
   return (
@@ -61,13 +82,14 @@ export default function Footer() {
           <div>
             <h4 className="text-base sm:text-lg font-bold mb-4 sm:mb-6">Our Services</h4>
             <ul className="space-y-2 sm:space-y-3">
-              {services.map((service, index) => (
-                <li key={index}>
+              {services.map((service) => (
+                <li key={service.id}>
                   <Link
-                    to="/services"
+                    to={`/services#${service.id}`}
+                    onClick={(e) => handleServiceClick(e, service.id)}
                     className="text-sm sm:text-base text-gray-300 hover:text-accent-500 transition-colors"
                   >
-                    {service}
+                    {service.label}
                   </Link>
                 </li>
               ))}

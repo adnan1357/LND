@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowRight, Calculator, ClipboardList, FileText, TrendingUp, Shield } from './Icons';
 
 interface ServicesOverviewProps {
@@ -10,6 +11,7 @@ export default function ServicesOverview({ onNavigate }: ServicesOverviewProps) 
 
   const services = [
     {
+      id: 'project-management',
       icon: ClipboardList,
       title: 'Project Management',
       description: 'Comprehensive project oversight ensuring successful delivery from inception to completion.',
@@ -17,6 +19,7 @@ export default function ServicesOverview({ onNavigate }: ServicesOverviewProps) 
       image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
     },
     {
+      id: 'cost-planning',
       icon: Calculator,
       title: 'Cost Planning & Management',
       description: 'Detailed financial planning and cost estimation to ensure budget certainty.',
@@ -24,6 +27,7 @@ export default function ServicesOverview({ onNavigate }: ServicesOverviewProps) 
       image: 'https://images.unsplash.com/photo-1554224154-26032ffc0d07?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
     },
     {
+      id: 'procurement-tendering',
       icon: FileText,
       title: 'Procurement & Tendering',
       description: 'Strategic procurement advice and comprehensive tender management services.',
@@ -31,6 +35,7 @@ export default function ServicesOverview({ onNavigate }: ServicesOverviewProps) 
       image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
     },
     {
+      id: 'risk-value-management',
       icon: TrendingUp,
       title: 'Risk & Value Management',
       description: 'Proactive risk assessment and value optimization strategies.',
@@ -38,6 +43,7 @@ export default function ServicesOverview({ onNavigate }: ServicesOverviewProps) 
       image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2015&q=80',
     },
     {
+      id: 'risk-value-management',
       icon: Shield,
       title: 'Building Safety Compliance',
       description: 'Expert guidance on Building Safety Regulations 2022 and fire safety works.',
@@ -76,36 +82,45 @@ export default function ServicesOverview({ onNavigate }: ServicesOverviewProps) 
                     isActive ? 'opacity-100' : 'opacity-70 hover:opacity-90'
                   }`}
                 >
-                  <button
-                    onClick={() => setActiveService(index)}
-                    className="w-full text-left group"
-                  >
-                    <div className="flex items-start gap-2 sm:gap-3 mb-2">
-                      <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center transition-colors flex-shrink-0 ${
-                        isActive ? 'bg-accent-600' : 'bg-dark-800 group-hover:bg-dark-700'
-                      }`}>
-                        <Icon className={`w-4 h-4 sm:w-5 sm:h-5 ${isActive ? 'text-white' : 'text-gray-400'}`} />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <h3 className={`text-base sm:text-lg font-bold mb-1 transition-colors ${
-                          isActive ? 'text-white' : 'text-gray-300 group-hover:text-white'
+                  <div className="flex flex-col">
+                    <button
+                      onClick={() => setActiveService(index)}
+                      className="w-full text-left group"
+                    >
+                      <div className="flex items-start gap-2 sm:gap-3 mb-2">
+                        <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center transition-colors flex-shrink-0 ${
+                          isActive ? 'bg-accent-600' : 'bg-dark-800 group-hover:bg-dark-700'
                         }`}>
-                          {service.title}
-                        </h3>
-                        <p className="text-gray-400 text-xs leading-relaxed">
-                          {service.description}
-                        </p>
+                          <Icon className={`w-4 h-4 sm:w-5 sm:h-5 ${isActive ? 'text-white' : 'text-gray-400'}`} />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <h3 className={`text-base sm:text-lg font-bold mb-1 transition-colors ${
+                            isActive ? 'text-white' : 'text-gray-300 group-hover:text-white'
+                          }`}>
+                            {service.title}
+                          </h3>
+                          <p className="text-gray-400 text-xs leading-relaxed">
+                            {service.description}
+                          </p>
+                        </div>
                       </div>
-                    </div>
-                  </button>
-                  
-                  {isActive && (
-                    <div className="ml-10 sm:ml-13 animate-in slide-in-from-top-2 duration-300">
-                      <p className="text-gray-300 text-xs sm:text-sm leading-relaxed mb-2">
-                        {service.details}
-                      </p>
-                    </div>
-                  )}
+                    </button>
+                    
+                    {isActive && (
+                      <div className="ml-10 sm:ml-13 animate-in slide-in-from-top-2 duration-300">
+                        <p className="text-gray-300 text-xs sm:text-sm leading-relaxed mb-3">
+                          {service.details}
+                        </p>
+                        <Link
+                          to={`/services#${service.id}`}
+                          className="inline-flex items-center gap-1 text-accent-400 hover:text-accent-300 text-xs font-semibold transition-colors"
+                        >
+                          Learn More
+                          <ArrowRight className="w-3 h-3" />
+                        </Link>
+                      </div>
+                    )}
+                  </div>
                 </div>
               );
             })}

@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { ClipboardList, Calculator, FileText, TrendingUp, Shield, ArrowRight } from './Icons';
 
 interface ServicesProps {
@@ -5,8 +7,12 @@ interface ServicesProps {
 }
 
 export default function Services({ onNavigate }: ServicesProps) {
+  const location = useLocation();
+  const [highlightedService, setHighlightedService] = useState<string | null>(null);
+
   const services = [
     {
+      id: 'project-management',
       icon: ClipboardList,
       title: 'Project Management',
       description: 'Comprehensive project oversight ensuring successful delivery from inception to completion.',
@@ -21,6 +27,7 @@ export default function Services({ onNavigate }: ServicesProps) {
       color: 'from-accent-600 to-accent-500',
     },
     {
+      id: 'cost-planning',
       icon: Calculator,
       title: 'Cost Planning',
       description: 'Detailed financial planning and cost estimation to ensure budget certainty.',
@@ -35,6 +42,7 @@ export default function Services({ onNavigate }: ServicesProps) {
       color: 'from-accent-500 to-accent-600',
     },
     {
+      id: 'procurement-tendering',
       icon: FileText,
       title: 'Procurement & Tendering',
       description: 'Strategic procurement advice and comprehensive tender management services.',
@@ -49,6 +57,7 @@ export default function Services({ onNavigate }: ServicesProps) {
       color: 'from-accent-600 to-accent-500',
     },
     {
+      id: 'post-contract-management',
       icon: TrendingUp,
       title: 'Post Contract Cost Management',
       description: 'Ongoing financial management and reporting throughout the project lifecycle.',
@@ -63,6 +72,7 @@ export default function Services({ onNavigate }: ServicesProps) {
       color: 'from-accent-500 to-accent-600',
     },
     {
+      id: 'risk-value-management',
       icon: Shield,
       title: 'Risk and Value Management',
       description: 'Proactive risk identification and value optimization strategies.',
@@ -77,6 +87,55 @@ export default function Services({ onNavigate }: ServicesProps) {
       color: 'from-accent-600 to-accent-500',
     },
   ];
+
+  useEffect(() => {
+    // Check if there's a hash in the URL
+    const hash = location.hash.replace('#', '');
+    if (hash) {
+      // Wait for the DOM to be ready and for any scroll-to-top to complete
+      const scrollToService = () => {
+        const element = document.getElementById(hash);
+        if (element) {
+          // Use offset scrolling to account for any fixed headers
+          const yOffset = -100;
+          const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+          // Highlight the card
+          setHighlightedService(hash);
+          // Remove highlight after 2 seconds
+          setTimeout(() => {
+            setHighlightedService(null);
+          }, 2000);
+        } else {
+          // If element not found, try again after a short delay
+          setTimeout(scrollToService, 100);
+        }
+      };
+      
+      // Initial delay to let the page render
+      setTimeout(scrollToService, 500);
+    } else {
+      // Clear highlight if no hash
+      setHighlightedService(null);
+    }
+  }, [location.hash, location.pathname]);
+
+  // Listen for custom highlight event from footer clicks
+  useEffect(() => {
+    const handleHighlightService = (e: CustomEvent<string>) => {
+      const serviceId = e.detail;
+      setHighlightedService(serviceId);
+      // Remove highlight after 2 seconds
+      setTimeout(() => {
+        setHighlightedService(null);
+      }, 2000);
+    };
+
+    window.addEventListener('highlightService', handleHighlightService as EventListener);
+    return () => {
+      window.removeEventListener('highlightService', handleHighlightService as EventListener);
+    };
+  }, []);
 
   return (
     <div className="bg-dark-950">
@@ -160,7 +219,12 @@ export default function Services({ onNavigate }: ServicesProps) {
               return (
                 <div
                   key={index}
-                  className="bg-dark-900 border border-dark-800 rounded-xl p-6 sm:p-8 hover:border-accent-600 transition-all duration-300 flex flex-col relative overflow-hidden min-h-[450px] sm:min-h-[500px]"
+                  id={service.id}
+                  className={`bg-dark-900 border rounded-xl p-6 sm:p-8 hover:border-accent-600 transition-all duration-300 flex flex-col relative overflow-hidden min-h-[450px] sm:min-h-[500px] ${
+                    highlightedService === service.id
+                      ? 'border-accent-500 shadow-[0_0_30px_rgba(249,115,22,0.4)] animate-pulse-border'
+                      : 'border-dark-800'
+                  }`}
                 >
                   {/* Large Number in Corner */}
                   <div className="absolute top-3 right-3 sm:top-4 sm:right-4 text-6xl sm:text-8xl font-bold text-gray-800/30 leading-none">
@@ -213,7 +277,12 @@ export default function Services({ onNavigate }: ServicesProps) {
               return (
                 <div
                   key={actualIndex}
-                  className="bg-dark-900 border border-dark-800 rounded-xl p-6 sm:p-8 hover:border-accent-600 transition-all duration-300 flex flex-col relative overflow-hidden min-h-[450px] sm:min-h-[500px] w-full md:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1.5rem)]"
+                  id={service.id}
+                  className={`bg-dark-900 border rounded-xl p-6 sm:p-8 hover:border-accent-600 transition-all duration-300 flex flex-col relative overflow-hidden min-h-[450px] sm:min-h-[500px] w-full md:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1.5rem)] ${
+                    highlightedService === service.id
+                      ? 'border-accent-500 shadow-[0_0_30px_rgba(249,115,22,0.4)] animate-pulse-border'
+                      : 'border-dark-800'
+                  }`}
                 >
                   {/* Large Number in Corner */}
                   <div className="absolute top-3 right-3 sm:top-4 sm:right-4 text-6xl sm:text-8xl font-bold text-gray-800/30 leading-none">
