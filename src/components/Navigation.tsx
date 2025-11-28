@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Building2 } from './Icons';
+import logoImage from '../../images/logo.png';
 
 export default function Navigation() {
   const location = useLocation();
@@ -48,7 +49,7 @@ export default function Navigation() {
             className="flex items-center space-x-3"
           >
             <img 
-              src="/images/logo.png" 
+              src={logoImage} 
               alt="LNDMS Logo" 
               className="h-10 sm:h-12 w-auto"
             />
