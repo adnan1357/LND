@@ -47,49 +47,50 @@ export default function About({ onNavigate }: AboutProps) {
   return (
     <div className="bg-dark-950">
       {/* Hero Section */}
-      <section className="relative min-h-screen w-full overflow-hidden flex items-center bg-dark-950 py-20 sm:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-start">
-            {/* Left Content - Title and Description */}
+      <section className="relative w-full overflow-hidden bg-dark-950 hero-pattern-overlay">
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent-500/50 to-transparent" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-28 sm:pt-32 pb-16 sm:pb-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+            {/* Left Content */}
             <div>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-gray-100 leading-tight mb-6 sm:mb-8 font-serif">
+              <p className="text-[11px] uppercase tracking-[0.25em] text-accent-500/90 font-semibold mb-5">
+                Who We Are
+              </p>
+              <h1 className="font-serif text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-semibold text-white leading-[1.05] tracking-tight mb-8">
                 About Us
               </h1>
-              <p className="text-sm sm:text-base lg:text-lg text-gray-400 leading-relaxed max-w-lg">
-                At LND Management Services, we understand that a project is more than just four walls and 
-                a roof – it's the cornerstone of your life's journey. With our unwavering 
-                commitment to excellence and personalized service, we're dedicated 
+              <p className="text-[17px] sm:text-lg text-gray-400 leading-relaxed max-w-xl mb-10">
+                At LND Management Services, we understand that a project is more than just four walls and
+                a roof – it&apos;s the cornerstone of your life&apos;s journey. With our unwavering
+                commitment to excellence and personalized service, we&apos;re dedicated
                 to guiding you every step of the way on your construction adventure.
               </p>
+              <button
+                onClick={() => onNavigate?.('contact')}
+                className="group inline-flex items-center gap-3 px-8 py-4 rounded-xl border border-accent-500/80 text-accent-400 bg-accent-500/5 font-medium hover:bg-accent-500 hover:text-white hover:border-accent-500 transition-all duration-300"
+              >
+                Talk to Us
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-0.5 transition-transform duration-200" />
+              </button>
             </div>
 
-            {/* Right Content - Images and CTA */}
-            <div className="space-y-4 sm:space-y-6">
-              {/* Talk to Us Button */}
-              <div className="mb-4 sm:mb-8">
-                <button
-                  onClick={() => onNavigate?.('contact')}
-                  className="inline-flex items-center gap-2 sm:gap-3 px-6 py-3 sm:px-8 sm:py-4 bg-transparent border-2 border-accent-500 text-accent-500 font-medium hover:bg-accent-500 hover:text-white transition-all duration-300 group text-sm sm:text-base"
-                >
-                  Talk to Us
-                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
-                </button>
-              </div>
-
-              {/* Images Grid */}
+            {/* Right Content - Images */}
+            <div className="relative lg:pl-8">
               <div className="grid grid-cols-2 gap-3 sm:gap-4">
-                <div className="relative rounded-lg overflow-hidden">
+                <div className="relative rounded-2xl overflow-hidden border border-dark-700/60 shadow-2xl">
+                  <div className="absolute inset-0 bg-gradient-to-t from-dark-950/40 via-transparent to-transparent z-10" />
                   <img
                     src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
                     alt="Professional team meeting"
-                    className="w-full h-48 sm:h-56 md:h-64 object-cover"
+                    className="w-full h-56 sm:h-64 lg:h-72 object-cover"
                   />
                 </div>
-                <div className="relative rounded-lg overflow-hidden">
+                <div className="relative rounded-2xl overflow-hidden border border-dark-700/60 shadow-2xl">
+                  <div className="absolute inset-0 bg-gradient-to-t from-dark-950/40 via-transparent to-transparent z-10" />
                   <img
                     src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
                     alt="Construction planning session"
-                    className="w-full h-48 sm:h-56 md:h-64 object-cover"
+                    className="w-full h-56 sm:h-64 lg:h-72 object-cover"
                   />
                 </div>
               </div>
@@ -99,7 +100,7 @@ export default function About({ onNavigate }: AboutProps) {
       </section>
 
       {/* Values Section */}
-      <section className="py-12 sm:py-16 md:py-24 bg-dark-900">
+      <section className="py-12 sm:py-16 md:py-24 bg-dark-900 values-pattern-overlay">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="mb-8 sm:mb-12 md:mb-16">
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif italic text-gray-100 leading-tight mb-6 sm:mb-8">
@@ -113,7 +114,7 @@ export default function About({ onNavigate }: AboutProps) {
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="py-12 sm:py-16 md:py-24 bg-dark-950">
+      <section className="py-12 sm:py-16 md:py-24 bg-dark-950 grid-pattern-overlay">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="mb-8 sm:mb-12">
             <h3 className="text-xs sm:text-sm font-medium text-accent-400 mb-4 sm:mb-6 uppercase tracking-wide">

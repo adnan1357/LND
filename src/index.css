@@ -28,6 +28,37 @@
 }
 
 @layer components {
+  .app-canvas {
+    @apply min-h-screen bg-dark-950;
+    background-image:
+      /* Subtle diagonal lines pattern */
+      linear-gradient(45deg, rgba(255, 255, 255, 0.008) 25%, transparent 25%),
+      linear-gradient(-45deg, rgba(255, 255, 255, 0.008) 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, rgba(255, 255, 255, 0.008) 75%),
+      linear-gradient(-45deg, transparent 75%, rgba(255, 255, 255, 0.008) 75%),
+      /* Enhanced grid overlay */
+      linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+      /* Subtle radial gradient for depth */
+      radial-gradient(circle at 50% 50%, rgba(243, 115, 22, 0.02) 0%, transparent 50%);
+    background-size: 
+      60px 60px,
+      60px 60px, 
+      60px 60px,
+      60px 60px,
+      40px 40px,
+      40px 40px,
+      100% 100%;
+    background-position:
+      0 0,
+      0 0,
+      30px 30px,
+      30px 30px,
+      0 0,
+      0 0,
+      center;
+  }
+
   .btn-primary {
     @apply px-6 py-3 bg-accent-600 hover:bg-accent-700 text-white font-semibold rounded-lg transition-all duration-200 hover:scale-105 shadow-lg hover:shadow-xl;
   }
@@ -54,6 +85,423 @@
 
   .gradient-dark {
     @apply bg-gradient-to-br from-dark-900 via-dark-800 to-dark-900;
+  }
+
+  /* Alternative pattern overlays - uncomment to use */
+  .pattern-dots {
+    background-image: 
+      radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.02) 1px, transparent 0);
+    background-size: 20px 20px;
+  }
+
+  .pattern-hexagon {
+    background-image:
+      linear-gradient(30deg, rgba(255, 255, 255, 0.01) 12%, transparent 12.5%, transparent 87%, rgba(255, 255, 255, 0.01) 87.5%, rgba(255, 255, 255, 0.01)),
+      linear-gradient(150deg, rgba(255, 255, 255, 0.01) 12%, transparent 12.5%, transparent 87%, rgba(255, 255, 255, 0.01) 87.5%, rgba(255, 255, 255, 0.01)),
+      linear-gradient(30deg, rgba(255, 255, 255, 0.01) 12%, transparent 12.5%, transparent 87%, rgba(255, 255, 255, 0.01) 87.5%, rgba(255, 255, 255, 0.01)),
+      linear-gradient(150deg, rgba(255, 255, 255, 0.01) 12%, transparent 12.5%, transparent 87%, rgba(255, 255, 255, 0.01) 87.5%, rgba(255, 255, 255, 0.01));
+    background-size: 80px 140px;
+    background-position: 0 0, 0 0, 40px 70px, 40px 70px;
+  }
+
+  .pattern-circuit {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.01) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px),
+      linear-gradient(rgba(243, 115, 22, 0.005) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(243, 115, 22, 0.005) 1px, transparent 1px);
+    background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+    background-position: -1px -1px, -1px -1px, -1px -1px, -1px -1px;
+  }
+
+  .pattern-waves {
+    background-image:
+      repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 2px,
+        rgba(255, 255, 255, 0.008) 2px,
+        rgba(255, 255, 255, 0.008) 4px
+      ),
+      repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 2px,
+        rgba(243, 115, 22, 0.005) 2px,
+        rgba(243, 115, 22, 0.005) 4px
+      );
+  }
+
+  /* Hero section pattern overlay (Values, About, Services) */
+  .hero-pattern-overlay {
+    position: relative;
+  }
+
+  .hero-pattern-overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+      /* Fine grid overlay */
+      linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      /* Soft accent radial for depth */
+      radial-gradient(circle at 20% 30%, rgba(243, 115, 22, 0.06) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(243, 115, 22, 0.05) 0%, transparent 50%);
+    background-size:
+      40px 40px,
+      40px 40px,
+      100% 100%,
+      100% 100%;
+    background-position:
+      0 0,
+      0 0,
+      0 0,
+      0 0;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .hero-pattern-overlay > * {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* About section specific pattern overlay */
+  .about-pattern-overlay {
+    position: relative;
+  }
+
+  .about-pattern-overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+      /* Fine grid overlay */
+      linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      /* Accent radial gradient for depth */
+      radial-gradient(circle at 25% 25%, rgba(243, 115, 22, 0.07) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(243, 115, 22, 0.05) 0%, transparent 50%);
+    background-size: 
+      30px 30px,
+      30px 30px,
+      100% 100%,
+      100% 100%;
+    background-position:
+      0 0,
+      0 0,
+      0 0,
+      0 0;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .about-pattern-overlay > * {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Consistent grid pattern overlay for multiple sections */
+  .grid-pattern-overlay {
+    position: relative;
+  }
+
+  .grid-pattern-overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+      /* Grid overlay - matches About hero (hero-pattern) transparency */
+      linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 
+      30px 30px,
+      30px 30px;
+    background-position:
+      0 0,
+      0 0;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .grid-pattern-overlay > * {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Our Values page: grid + gradient lighting throughout */
+  .values-page-overlay {
+    position: relative;
+  }
+
+  .values-page-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      /* Grid */
+      linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      /* Gradient lighting – hero / top */
+      radial-gradient(ellipse 100% 80% at 20% 10%, rgba(243, 115, 22, 0.07) 0%, transparent 50%),
+      radial-gradient(ellipse 90% 70% at 85% 15%, rgba(255, 255, 255, 0.04) 0%, transparent 45%),
+      /* Mid page – left and right */
+      radial-gradient(ellipse 70% 100% at 5% 50%, rgba(243, 115, 22, 0.05) 0%, transparent 45%),
+      radial-gradient(ellipse 70% 100% at 95% 55%, rgba(243, 115, 22, 0.06) 0%, transparent 45%),
+      /* Center glow */
+      radial-gradient(ellipse 80% 60% at 50% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 55%),
+      /* Lower section – Values cards & CTA */
+      radial-gradient(ellipse 100% 90% at 25% 85%, rgba(243, 115, 22, 0.06) 0%, transparent 50%),
+      radial-gradient(ellipse 90% 80% at 75% 90%, rgba(255, 255, 255, 0.035) 0%, transparent 45%);
+    background-size:
+      30px 30px,
+      30px 30px,
+      100% 100%,
+      100% 100%,
+      100% 100%,
+      100% 100%,
+      100% 100%,
+      100% 100%,
+      100% 100%;
+    background-position: 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0;
+    background-repeat: repeat, repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .values-page-overlay > * {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Services page: blueprint-style decorations */
+  .blueprint-overlay {
+    position: relative;
+  }
+
+  .blueprint-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      /* Main grid - blueprint style */
+      linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      /* Larger accent grid overlay */
+      linear-gradient(rgba(243, 115, 22, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(243, 115, 22, 0.03) 1px, transparent 1px),
+      /* Diagonal hatch lines - blueprint style */
+      repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 80px,
+        rgba(255, 255, 255, 0.015) 80px,
+        rgba(255, 255, 255, 0.015) 81px
+      ),
+      repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 80px,
+        rgba(255, 255, 255, 0.015) 80px,
+        rgba(255, 255, 255, 0.015) 81px
+      ),
+      /* Gradient lighting */
+      radial-gradient(ellipse 100% 80% at 20% 10%, rgba(243, 115, 22, 0.06) 0%, transparent 50%),
+      radial-gradient(ellipse 70% 100% at 95% 55%, rgba(243, 115, 22, 0.05) 0%, transparent 45%),
+      radial-gradient(ellipse 100% 90% at 25% 85%, rgba(243, 115, 22, 0.05) 0%, transparent 50%);
+    background-size:
+      30px 30px,
+      30px 30px,
+      120px 120px,
+      120px 120px,
+      100% 100%,
+      100% 100%,
+      100% 100%,
+      100% 100%,
+      100% 100%;
+    background-position: 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0;
+    background-repeat: repeat, repeat, repeat, repeat, repeat, repeat, no-repeat, no-repeat, no-repeat;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .blueprint-overlay::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      /* Measurement tick marks - top */
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 59px,
+        rgba(255, 255, 255, 0.08) 59px,
+        rgba(255, 255, 255, 0.08) 60px,
+        transparent 60px,
+        transparent 60px
+      ),
+      /* Dashed horizontal accent lines */
+      repeating-linear-gradient(
+        180deg,
+        transparent,
+        transparent 199px,
+        rgba(243, 115, 22, 0.04) 199px,
+        rgba(243, 115, 22, 0.04) 200px,
+        transparent 200px,
+        transparent 210px,
+        rgba(243, 115, 22, 0.04) 210px,
+        rgba(243, 115, 22, 0.04) 211px,
+        transparent 211px,
+        transparent 400px
+      );
+    background-size: 60px 8px, 100% 400px;
+    background-position: 0 0, 0 100px;
+    background-repeat: repeat-x, repeat-y;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.7;
+  }
+
+  .blueprint-overlay > * {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Blueprint corner bracket */
+  .blueprint-corner {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  .blueprint-corner::before,
+  .blueprint-corner::after {
+    content: '';
+    position: absolute;
+    background: rgba(243, 115, 22, 0.3);
+  }
+
+  .blueprint-corner--tl { top: 20px; left: 20px; }
+  .blueprint-corner--tl::before { top: 0; left: 0; width: 20px; height: 2px; }
+  .blueprint-corner--tl::after { top: 0; left: 0; width: 2px; height: 20px; }
+
+  .blueprint-corner--tr { top: 20px; right: 20px; }
+  .blueprint-corner--tr::before { top: 0; right: 0; width: 20px; height: 2px; }
+  .blueprint-corner--tr::after { top: 0; right: 0; width: 2px; height: 20px; }
+
+  .blueprint-corner--bl { bottom: 20px; left: 20px; }
+  .blueprint-corner--bl::before { bottom: 0; left: 0; width: 20px; height: 2px; }
+  .blueprint-corner--bl::after { bottom: 0; left: 0; width: 2px; height: 20px; }
+
+  .blueprint-corner--br { bottom: 20px; right: 20px; }
+  .blueprint-corner--br::before { bottom: 0; right: 0; width: 20px; height: 2px; }
+  .blueprint-corner--br::after { bottom: 0; right: 0; width: 2px; height: 20px; }
+
+  /* Blueprint circle markers */
+  .blueprint-circle {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border: 2px solid rgba(243, 115, 22, 0.25);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  .blueprint-circle::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 4px;
+    height: 4px;
+    background: rgba(243, 115, 22, 0.4);
+    border-radius: 50%;
+  }
+
+  /* Blueprint cross marker */
+  .blueprint-cross {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  .blueprint-cross::before,
+  .blueprint-cross::after {
+    content: '';
+    position: absolute;
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  .blueprint-cross::before {
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    transform: translateY(-50%);
+  }
+
+  .blueprint-cross::after {
+    top: 0;
+    left: 50%;
+    width: 1px;
+    height: 100%;
+    transform: translateX(-50%);
+  }
+
+  /* Values section circles pattern overlay */
+  .values-pattern-overlay {
+    position: relative;
+  }
+
+  .values-pattern-overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+      /* Large accent circles */
+      radial-gradient(circle at 15% 20%, rgba(243, 115, 22, 0.08) 80px, transparent 81px),
+      radial-gradient(circle at 85% 80%, rgba(243, 115, 22, 0.06) 120px, transparent 121px),
+      /* Medium white circles */
+      radial-gradient(circle at 70% 15%, rgba(255, 255, 255, 0.03) 60px, transparent 61px),
+      radial-gradient(circle at 25% 75%, rgba(255, 255, 255, 0.04) 90px, transparent 91px),
+      radial-gradient(circle at 90% 40%, rgba(255, 255, 255, 0.02) 45px, transparent 46px),
+      /* Small accent circles */
+      radial-gradient(circle at 40% 30%, rgba(243, 115, 22, 0.12) 25px, transparent 26px),
+      radial-gradient(circle at 60% 85%, rgba(243, 115, 22, 0.10) 35px, transparent 36px),
+      radial-gradient(circle at 10% 60%, rgba(243, 115, 22, 0.08) 20px, transparent 21px),
+      /* Tiny white circles */
+      radial-gradient(circle at 50% 10%, rgba(255, 255, 255, 0.06) 15px, transparent 16px),
+      radial-gradient(circle at 80% 65%, rgba(255, 255, 255, 0.05) 18px, transparent 19px),
+      radial-gradient(circle at 30% 50%, rgba(255, 255, 255, 0.04) 12px, transparent 13px),
+      radial-gradient(circle at 95% 25%, rgba(255, 255, 255, 0.03) 22px, transparent 23px);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .values-pattern-overlay > * {
+    position: relative;
+    z-index: 2;
   }
 }
 
@@ -110,4 +558,70 @@
   .animate-pulse-border {
     animation: pulseBorder 1s ease-in-out 2;
   }
+
+  /* Scroll Animation Classes */
+  .scroll-fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), 
+                transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .scroll-fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .scroll-fade-in {
+    opacity: 0;
+    transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .scroll-fade-in.visible {
+    opacity: 1;
+  }
+
+  .scroll-slide-left {
+    opacity: 0;
+    transform: translateX(-32px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .scroll-slide-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .scroll-slide-right {
+    opacity: 0;
+    transform: translateX(32px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .scroll-slide-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .scroll-scale-in {
+    opacity: 0;
+    transform: scale(0.96);
+    transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .scroll-scale-in.visible {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* Stagger delay utilities */
+  .stagger-1 { transition-delay: 0ms; }
+  .stagger-2 { transition-delay: 80ms; }
+  .stagger-3 { transition-delay: 160ms; }
+  .stagger-4 { transition-delay: 240ms; }
+  .stagger-5 { transition-delay: 320ms; }
+  .stagger-6 { transition-delay: 400ms; }
 }

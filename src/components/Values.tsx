@@ -1,10 +1,18 @@
 import { Shield, Star, Handshake, Lightbulb, FileCheck, Heart, ArrowRight } from './Icons';
+import { useScrollAnimation, useStaggeredAnimation } from '../hooks/useScrollAnimation';
 
 interface ValuesProps {
   onNavigate?: (section: string) => void;
 }
 
 export default function Values({ onNavigate }: ValuesProps) {
+  // Animation hooks
+  const [heroRef, heroVisible] = useScrollAnimation<HTMLDivElement>({ threshold: 0.1 });
+  const [imagesRef, imagesVisible] = useScrollAnimation<HTMLDivElement>({ threshold: 0.2 });
+  const [sectionHeaderRef, sectionHeaderVisible] = useScrollAnimation<HTMLDivElement>({ threshold: 0.2 });
+  const [valuesGridRef, valuesVisible] = useStaggeredAnimation<HTMLDivElement>(6, { threshold: 0.1 });
+  const [ctaRef, ctaVisible] = useScrollAnimation<HTMLDivElement>({ threshold: 0.2 });
+
   const values = [
     {
       icon: Shield,
@@ -45,50 +53,70 @@ export default function Values({ onNavigate }: ValuesProps) {
   ];
 
   return (
-    <div className="bg-dark-950">
+    <div className="bg-dark-950 blueprint-overlay">
+      {/* Blueprint decorative elements */}
+      <div className="blueprint-corner blueprint-corner--tl" />
+      <div className="blueprint-corner blueprint-corner--tr" />
+      <div className="blueprint-corner blueprint-corner--bl" />
+      <div className="blueprint-corner blueprint-corner--br" />
+      
+      {/* Blueprint circle markers */}
+      <div className="blueprint-circle" style={{ top: '15%', left: '8%' }} />
+      <div className="blueprint-circle" style={{ top: '35%', right: '5%' }} />
+      <div className="blueprint-circle" style={{ top: '55%', left: '3%' }} />
+      <div className="blueprint-circle" style={{ top: '75%', right: '8%' }} />
+      <div className="blueprint-circle" style={{ bottom: '12%', left: '12%' }} />
+      
+      {/* Blueprint cross markers */}
+      <div className="blueprint-cross" style={{ top: '25%', right: '12%' }} />
+      <div className="blueprint-cross" style={{ top: '45%', left: '6%' }} />
+      <div className="blueprint-cross" style={{ top: '65%', right: '4%' }} />
+      <div className="blueprint-cross" style={{ bottom: '25%', left: '5%' }} />
+
       {/* Hero Section */}
-      <section className="relative h-screen w-full overflow-hidden flex items-center bg-dark-950">
-        <div className="max-w-7xl mx-auto px-6 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-            {/* Left Content - Title and Description */}
-            <div>
-              <h1 className="text-6xl lg:text-7xl xl:text-8xl font-bold text-gray-100 leading-tight mb-8 font-serif">
+      <section className="relative w-full overflow-hidden">
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent-500/50 to-transparent" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-28 sm:pt-32 pb-16 sm:pb-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+            {/* Left Content */}
+            <div ref={heroRef}>
+              <p className={`text-[11px] uppercase tracking-[0.25em] text-accent-500/90 font-semibold mb-5 scroll-fade-up ${heroVisible ? 'visible' : ''}`}>
+                What We Stand For
+              </p>
+              <h1 className={`font-serif text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-semibold text-white leading-[1.05] tracking-tight mb-8 scroll-fade-up stagger-2 ${heroVisible ? 'visible' : ''}`}>
                 Our Values
               </h1>
-              <p className="text-lg text-gray-400 leading-relaxed max-w-lg">
-                The principles that guide our work and define our commitment to excellence. 
-                These values aren't just words—they are the foundation of how we operate, 
+              <p className={`text-[17px] sm:text-lg text-gray-400 leading-relaxed max-w-xl mb-10 scroll-fade-up stagger-3 ${heroVisible ? 'visible' : ''}`}>
+                The principles that guide our work and define our commitment to excellence.
+                These values aren&apos;t just words—they are the foundation of how we operate,
                 make decisions, and serve our clients every day.
               </p>
+              <button
+                onClick={() => onNavigate?.('contact')}
+                className={`group inline-flex items-center gap-3 px-8 py-4 rounded-xl border border-accent-500/80 text-accent-400 bg-accent-500/5 font-medium hover:bg-accent-500 hover:text-white hover:border-accent-500 transition-all duration-300 scroll-fade-up stagger-4 ${heroVisible ? 'visible' : ''}`}
+              >
+                Talk to Us
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-0.5 transition-transform duration-200" />
+              </button>
             </div>
 
-            {/* Right Content - Images and CTA */}
-            <div className="space-y-6">
-              {/* Talk to Us Button */}
-              <div className="mb-8">
-                <button
-                  onClick={() => onNavigate?.('contact')}
-                  className="inline-flex items-center gap-3 px-8 py-4 bg-transparent border-2 border-accent-500 text-accent-500 font-medium hover:bg-accent-500 hover:text-white transition-all duration-300 group"
-                >
-                  Talk to Us
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </button>
-              </div>
-
-              {/* Images Grid */}
-              <div className="grid grid-cols-2 gap-4">
-                <div className="relative rounded-lg overflow-hidden">
+            {/* Right Content - Images */}
+            <div ref={imagesRef} className="relative lg:pl-8">
+              <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                <div className={`relative rounded-2xl overflow-hidden border border-dark-700/60 shadow-2xl scroll-scale-in ${imagesVisible ? 'visible' : ''}`}>
+                  <div className="absolute inset-0 bg-gradient-to-t from-dark-950/40 via-transparent to-transparent z-10" />
                   <img
-                    src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                    src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                     alt="Team collaboration"
-                    className="w-full h-64 object-cover"
+                    className="w-full h-56 sm:h-64 lg:h-72 object-cover"
                   />
                 </div>
-                <div className="relative rounded-lg overflow-hidden">
+                <div className={`relative rounded-2xl overflow-hidden border border-dark-700/60 shadow-2xl scroll-scale-in stagger-2 ${imagesVisible ? 'visible' : ''}`}>
+                  <div className="absolute inset-0 bg-gradient-to-t from-dark-950/40 via-transparent to-transparent z-10" />
                   <img
-                    src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                    src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                     alt="Professional integrity"
-                    className="w-full h-64 object-cover"
+                    className="w-full h-56 sm:h-64 lg:h-72 object-cover"
                   />
                 </div>
               </div>
@@ -97,49 +125,77 @@ export default function Values({ onNavigate }: ValuesProps) {
         </div>
       </section>
 
-      {/* Values Content Section */}
-      <section id="values" className="section-padding bg-dark-950">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-100 mb-4 font-serif">
+      {/* Core Values Section */}
+      <section id="values" className="py-24 sm:py-28 lg:py-32 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div ref={sectionHeaderRef} className="text-center mb-16 lg:mb-20">
+            <p className={`text-[11px] uppercase tracking-[0.2em] text-accent-500/80 font-semibold mb-4 scroll-fade-up ${sectionHeaderVisible ? 'visible' : ''}`}>
+              The Principles That Guide Us
+            </p>
+            <h2 className={`font-serif text-3xl sm:text-4xl lg:text-5xl font-semibold text-white tracking-tight scroll-fade-up stagger-2 ${sectionHeaderVisible ? 'visible' : ''}`}>
               Our Core Values
             </h2>
           </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {values.map((value, index) => {
-            const Icon = value.icon;
-            return (
-              <div
-                key={index}
-                className="bg-dark-900 border border-dark-800 rounded-xl p-8 hover:border-accent-600 transition-all duration-300"
-              >
-                <div className={`w-16 h-16 bg-gradient-to-br ${value.color} rounded-lg flex items-center justify-center mb-6`}>
-                  <Icon className="w-8 h-8 text-white" />
+          <div ref={valuesGridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {values.map((value, index) => {
+              const Icon = value.icon;
+              const ordinal = String(index + 1).padStart(2, '0');
+              return (
+                <div
+                  key={index}
+                  className={`group relative overflow-hidden rounded-2xl border border-dark-700/50 bg-gradient-to-b from-dark-900/90 via-dark-900/70 to-dark-800/80 p-8 lg:p-9 shadow-lg shadow-black/20 transition-all duration-300 ease-out hover:-translate-y-1 hover:border-accent-500/40 hover:shadow-xl hover:shadow-accent-900/20 scroll-fade-up ${valuesVisible[index] ? 'visible' : ''}`}
+                >
+                  {/* Top-edge highlight */}
+                  <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-60" />
+                  {/* Left accent bar - appears on hover */}
+                  <div className="absolute left-0 top-6 bottom-6 w-[3px] rounded-r-full bg-gradient-to-b from-accent-500 to-accent-600 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  {/* Ordinal */}
+                  <span className="absolute top-6 right-6 font-mono text-[11px] font-medium uppercase tracking-widest text-accent-500/40">
+                    {ordinal}
+                  </span>
+                  {/* Icon container - refined with ring and hover glow */}
+                  <div
+                    className={`relative z-10 mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br ${value.color} shadow-lg shadow-accent-600/20 ring-1 ring-white/10 transition-all duration-300 group-hover:shadow-xl group-hover:shadow-accent-500/25 group-hover:ring-accent-400/20`}
+                  >
+                    <Icon className="h-7 w-7 text-white transition-transform duration-300 group-hover:scale-110" />
+                  </div>
+                  {/* Title with underline accent */}
+                  <h3 className="relative font-serif text-xl lg:text-2xl font-semibold tracking-tight text-white mb-3">
+                    {value.title}
+                  </h3>
+                  <div className="mb-4 h-px w-12 bg-gradient-to-r from-accent-500/60 to-transparent rounded-full" />
+                  <p className="text-[15px] leading-relaxed text-gray-400">
+                    {value.description}
+                  </p>
                 </div>
-                <h3 className="text-2xl font-bold text-gray-100 mb-4">
-                  {value.title}
-                </h3>
-                <p className="text-gray-400 leading-relaxed">
-                  {value.description}
-                </p>
-              </div>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
 
-        <div className="mt-16 bg-dark-900 border border-dark-800 rounded-2xl p-12 text-center">
-          <h3 className="text-3xl font-bold mb-4 text-gray-100 font-serif">
-            Values in Action
-          </h3>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            These values aren't just words on a page—they are the foundation of how we operate,
-            make decisions, and serve our clients every day. They ensure that LNDMS remains a
-            trusted partner committed to delivering exceptional results with integrity and professionalism.
-          </p>
+          {/* Values in Action */}
+          <div ref={ctaRef} className={`mt-20 lg:mt-24 relative rounded-2xl overflow-hidden border border-dark-800/80 bg-gradient-to-br from-dark-900/90 via-dark-900/70 to-dark-900/90 scroll-fade-up ${ctaVisible ? 'visible' : ''}`}>
+            <div className="absolute top-0 left-0 w-1 sm:w-1.5 h-full bg-gradient-to-b from-accent-500/80 to-accent-600/60" />
+            <div className="py-14 sm:py-16 lg:py-20 px-8 sm:px-12 lg:px-20 pl-10 sm:pl-14">
+              <p className={`text-[11px] uppercase tracking-[0.2em] text-accent-500/80 font-semibold mb-4 scroll-fade-up stagger-2 ${ctaVisible ? 'visible' : ''}`}>
+                Our Commitment
+              </p>
+              <h3 className={`font-serif text-2xl sm:text-3xl lg:text-4xl font-semibold text-white mb-6 tracking-tight max-w-3xl scroll-fade-up stagger-3 ${ctaVisible ? 'visible' : ''}`}>
+                Values in Action
+              </h3>
+              <p className={`text-[17px] sm:text-lg lg:text-xl text-gray-400 max-w-3xl leading-relaxed scroll-fade-up stagger-4 ${ctaVisible ? 'visible' : ''}`}>
+                These values aren&apos;t just words on a page—they are the foundation of how we
+                operate, make decisions, and serve our clients every day. They ensure that LNDMS
+                remains a trusted partner committed to delivering exceptional results with
+                integrity and professionalism.
+              </p>
+              <p className={`mt-8 text-[13px] uppercase tracking-[0.15em] text-gray-500 font-medium scroll-fade-up stagger-5 ${ctaVisible ? 'visible' : ''}`}>
+                — LND Management Services
+              </p>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
     </div>
   );
 }

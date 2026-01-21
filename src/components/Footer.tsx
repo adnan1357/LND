@@ -1,28 +1,22 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Building2, Mail, Phone, MapPin } from './Icons';
+import { Building2, Mail, Phone, MapPin, ArrowRight } from './Icons';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   const location = useLocation();
 
   const handleServiceClick = (e: React.MouseEvent, serviceId: string) => {
-    // If we're already on the services page, scroll directly to the element
     if (location.pathname === '/services') {
       e.preventDefault();
       const element = document.getElementById(serviceId);
       if (element) {
-        // Use offset scrolling to account for any fixed headers
         const yOffset = -100;
         const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
         window.scrollTo({ top: y, behavior: 'smooth' });
-        
-        // Dispatch custom event to trigger highlight in Services component
         window.dispatchEvent(new CustomEvent('highlightService', { detail: serviceId }));
       }
-      // Update the URL hash without triggering navigation
       window.history.pushState(null, '', `/services#${serviceId}`);
     }
-    // Otherwise, let the Link handle the navigation normally
   };
 
   const quickLinks = [
@@ -40,38 +34,52 @@ export default function Footer() {
     { label: 'Risk & Value Management', id: 'risk-value-management' },
   ];
 
+  const linkClass =
+    'group flex items-center gap-2 text-sm text-gray-400 hover:text-accent-400 transition-all duration-200';
+
   return (
-    <footer className="gradient-dark text-white border-t border-dark-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-12 mb-8 sm:mb-12">
-          <div>
-            <div className="flex items-center space-x-3 mb-4 sm:mb-6">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 gradient-accent rounded-lg flex items-center justify-center">
-                <Building2 className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
+    <footer className="relative bg-dark-950 text-white overflow-hidden grid-pattern-overlay">
+      {/* Accent line */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent-500/60 to-transparent" />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8 sm:pt-20 sm:pb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16 mb-16 lg:mb-20">
+          {/* Brand */}
+          <div className="lg:col-span-1">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="relative w-12 h-12 rounded-xl gradient-accent flex items-center justify-center shadow-lg shadow-accent-600/20">
+                <Building2 className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h3 className="text-lg sm:text-xl font-bold">LNDMS</h3>
-                <p className="text-xs sm:text-sm text-gray-400">Cost & Project Management</p>
+                <h3 className="font-serif text-xl font-semibold tracking-tight text-white">
+                  LNDMS
+                </h3>
+                <p className="text-xs uppercase tracking-[0.2em] text-accent-500/90 font-medium mt-0.5">
+                  Cost & Project Management
+                </p>
               </div>
             </div>
-            <p className="text-sm sm:text-base text-gray-300 mb-4 sm:mb-6 leading-relaxed">
+            <p className="text-gray-400 text-[15px] leading-relaxed mb-6 max-w-xs">
               Expert Quantity Surveying and Cost Management consultancy serving clients across the UK and UAE.
             </p>
-            <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-400">
-              <MapPin className="w-4 h-4 text-accent-500 flex-shrink-0" />
+            <div className="flex items-center gap-3 text-gray-500 text-sm">
+              <div className="w-8 h-8 rounded-lg bg-dark-800/80 flex items-center justify-center border border-dark-700/50">
+                <MapPin className="w-4 h-4 text-accent-500" />
+              </div>
               <span>London, England</span>
             </div>
           </div>
 
+          {/* Quick Links */}
           <div>
-            <h4 className="text-base sm:text-lg font-bold mb-4 sm:mb-6">Quick Links</h4>
-            <ul className="space-y-2 sm:space-y-3">
+            <h4 className="text-[11px] uppercase tracking-[0.2em] text-gray-500 font-semibold mb-5">
+              Quick Links
+            </h4>
+            <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.path}>
-                  <Link
-                    to={link.path}
-                    className="text-sm sm:text-base text-gray-300 hover:text-accent-500 transition-colors"
-                  >
+                  <Link to={link.path} className={linkClass}>
+                    <ArrowRight className="w-3.5 h-3.5 text-accent-500/70 opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all duration-200" />
                     {link.label}
                   </Link>
                 </li>
@@ -79,16 +87,20 @@ export default function Footer() {
             </ul>
           </div>
 
+          {/* Services */}
           <div>
-            <h4 className="text-base sm:text-lg font-bold mb-4 sm:mb-6">Our Services</h4>
-            <ul className="space-y-2 sm:space-y-3">
+            <h4 className="text-[11px] uppercase tracking-[0.2em] text-gray-500 font-semibold mb-5">
+              Our Services
+            </h4>
+            <ul className="space-y-3">
               {services.map((service) => (
                 <li key={service.id}>
                   <Link
                     to={`/services#${service.id}`}
                     onClick={(e) => handleServiceClick(e, service.id)}
-                    className="text-sm sm:text-base text-gray-300 hover:text-accent-500 transition-colors"
+                    className={linkClass}
                   >
+                    <ArrowRight className="w-3.5 h-3.5 text-accent-500/70 opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all duration-200" />
                     {service.label}
                   </Link>
                 </li>
@@ -96,36 +108,57 @@ export default function Footer() {
             </ul>
           </div>
 
+          {/* Contact */}
           <div>
-            <h4 className="text-base sm:text-lg font-bold mb-4 sm:mb-6">Contact Info</h4>
-            <ul className="space-y-3 sm:space-y-4">
-              <li className="flex items-start gap-2 sm:gap-3">
-                <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-accent-500 mt-0.5 flex-shrink-0" />
-                <div>
-                  <p className="text-sm sm:text-base text-gray-300">Enquiries@lndms.ae</p>
-                </div>
+            <h4 className="text-[11px] uppercase tracking-[0.2em] text-gray-500 font-semibold mb-5">
+              Contact
+            </h4>
+            <ul className="space-y-5">
+              <li>
+                <a
+                  href="mailto:Enquiries@lndms.ae"
+                  className="group/contact flex items-start gap-4 text-gray-400 hover:text-white transition-colors duration-200"
+                >
+                  <div className="w-9 h-9 rounded-lg bg-dark-800/80 flex items-center justify-center border border-dark-700/50 flex-shrink-0 group-hover/contact:border-accent-500/30 group-hover/contact:bg-accent-500/5 transition-colors">
+                    <Mail className="w-4 h-4 text-accent-500" />
+                  </div>
+                  <div>
+                    <p className="text-[10px] uppercase tracking-wider text-gray-500 mb-0.5">Email</p>
+                    <p className="text-[15px]">Enquiries@lndms.ae</p>
+                  </div>
+                </a>
               </li>
-              <li className="flex items-start gap-2 sm:gap-3">
-                <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-accent-500 mt-0.5 flex-shrink-0" />
-                <div>
-                  <p className="text-sm sm:text-base text-gray-300">+44 7539 866877</p>
-                  <p className="text-xs sm:text-sm text-gray-400">Mon - Fri, 9:00 AM - 6:00 PM</p>
-                </div>
+              <li>
+                <a
+                  href="tel:+447539866877"
+                  className="group/contact flex items-start gap-4 text-gray-400 hover:text-white transition-colors duration-200"
+                >
+                  <div className="w-9 h-9 rounded-lg bg-dark-800/80 flex items-center justify-center border border-dark-700/50 flex-shrink-0 group-hover/contact:border-accent-500/30 group-hover/contact:bg-accent-500/5 transition-colors">
+                    <Phone className="w-4 h-4 text-accent-500" />
+                  </div>
+                  <div>
+                    <p className="text-[10px] uppercase tracking-wider text-gray-500 mb-0.5">Phone</p>
+                    <p className="text-[15px]">+44 7539 866877</p>
+                    <p className="text-[11px] text-gray-500 mt-0.5">Mon – Fri, 9:00 – 18:00</p>
+                  </div>
+                </a>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-gray-800 pt-6 sm:pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-3 sm:gap-4">
-            <p className="text-gray-400 text-xs sm:text-sm text-center md:text-left">
+        {/* Bottom bar */}
+        <div className="pt-8 border-t border-dark-800/80">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-gray-500 text-[13px] text-center md:text-left order-2 md:order-1">
               © {currentYear} LND Management Services. All rights reserved.
             </p>
-            <div className="flex gap-4 sm:gap-6">
-              <button className="text-gray-400 hover:text-accent-500 transition-colors text-xs sm:text-sm">
+            <div className="flex items-center gap-8 order-1 md:order-2">
+              <button className="text-gray-500 hover:text-accent-400 text-[13px] transition-colors duration-200">
                 Privacy Policy
               </button>
-              <button className="text-gray-400 hover:text-accent-500 transition-colors text-xs sm:text-sm">
+              <span className="w-px h-4 bg-dark-700" />
+              <button className="text-gray-500 hover:text-accent-400 text-[13px] transition-colors duration-200">
                 Terms of Service
               </button>
             </div>

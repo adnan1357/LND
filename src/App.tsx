@@ -13,7 +13,7 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
-      <div className="min-h-screen bg-dark-950">
+      <div className="app-canvas">
         <Navigation />
 
         <main>

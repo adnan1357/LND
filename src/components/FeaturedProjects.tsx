@@ -1,4 +1,5 @@
 import { ArrowRight, Calendar, Banknote } from './Icons';
+import { useScrollAnimation, useStaggeredAnimation } from '../hooks/useScrollAnimation';
 import ropeworksImage from '../../images/ropeworks.jpg';
 import gallionsreachImage from '../../images/gallionsreach.jpg';
 
@@ -7,6 +8,8 @@ interface FeaturedProjectsProps {
 }
 
 export default function FeaturedProjects({ onNavigate }: FeaturedProjectsProps) {
+  const [headerRef, isHeaderVisible] = useScrollAnimation<HTMLDivElement>({ threshold: 0.3 });
+  const [projectsRef, projectsVisible] = useStaggeredAnimation<HTMLDivElement>(2, { threshold: 0.15 });
   const projects = [
     {
       title: 'Ropeworks, London',
@@ -27,10 +30,13 @@ export default function FeaturedProjects({ onNavigate }: FeaturedProjectsProps) 
   ];
 
   return (
-    <section className="min-h-screen flex items-center bg-dark-950 py-12 sm:py-16 lg:py-20">
+    <section className="min-h-screen flex items-center bg-dark-950 pt-4 sm:pt-6 lg:pt-8 pb-12 sm:pb-16 lg:pb-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full">
         {/* Header */}
-        <div className="mb-6 sm:mb-8">
+        <div 
+          ref={headerRef}
+          className={`mb-6 sm:mb-8 scroll-fade-up ${isHeaderVisible ? 'visible' : ''}`}
+        >
           <h2 className="text-xs font-medium text-accent-400 mb-2 sm:mb-3 uppercase tracking-wide">
             Portfolio
           </h2>
@@ -46,11 +52,14 @@ export default function FeaturedProjects({ onNavigate }: FeaturedProjectsProps) 
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8">
+        <div 
+          ref={projectsRef}
+          className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8"
+        >
           {projects.map((project, index) => (
             <div
               key={index}
-              className="group relative bg-dark-900 rounded-2xl overflow-hidden border border-dark-700 hover:border-accent-500/30 transition-all duration-500"
+              className={`group relative bg-dark-900 rounded-2xl overflow-hidden border border-dark-700 hover:border-accent-500/30 transition-all duration-500 scroll-scale-in ${projectsVisible[index] ? 'visible' : ''}`}
             >
               {/* Image */}
               <div className="h-40 sm:h-48 relative overflow-hidden">
@@ -109,7 +118,7 @@ export default function FeaturedProjects({ onNavigate }: FeaturedProjectsProps) 
         </div>
 
         {/* CTA Button */}
-        <div className="text-center">
+        <div className={`text-center scroll-fade-up ${projectsVisible[1] ? 'visible' : ''}`} style={{ transitionDelay: '150ms' }}>
           <button
             onClick={() => onNavigate('projects')}
             className="inline-flex items-center gap-2 sm:gap-3 px-6 py-3 sm:px-8 sm:py-4 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-sm sm:text-base text-white font-medium hover:bg-white/20 transition-all duration-300 group"

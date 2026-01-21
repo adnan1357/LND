@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Calculator, ClipboardList, FileText, TrendingUp, Shield } from './Icons';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 interface ServicesOverviewProps {
   onNavigate: (section: string) => void;
@@ -8,6 +9,8 @@ interface ServicesOverviewProps {
 
 export default function ServicesOverview({ onNavigate }: ServicesOverviewProps) {
   const [activeService, setActiveService] = useState(0);
+  const [headerRef, isHeaderVisible] = useScrollAnimation<HTMLDivElement>({ threshold: 0.3 });
+  const [contentRef, isContentVisible] = useScrollAnimation<HTMLDivElement>({ threshold: 0.15 });
 
   const services = [
     {
@@ -53,10 +56,13 @@ export default function ServicesOverview({ onNavigate }: ServicesOverviewProps) 
   ];
 
   return (
-    <section className="min-h-screen py-12 sm:py-16 lg:py-20 bg-dark-950 flex items-center">
+    <section className="pt-12 sm:pt-16 lg:pt-20 pb-4 sm:pb-6 lg:pb-8 bg-dark-950">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full">
         {/* Header */}
-        <div className="text-center mb-6 sm:mb-8">
+        <div 
+          ref={headerRef}
+          className={`text-center mb-6 sm:mb-8 scroll-fade-up ${isHeaderVisible ? 'visible' : ''}`}
+        >
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif italic text-gray-100 mb-3 sm:mb-4">
             Our Services
           </h2>
@@ -68,9 +74,12 @@ export default function ServicesOverview({ onNavigate }: ServicesOverviewProps) 
         </div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+        <div 
+          ref={contentRef}
+          className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start"
+        >
           {/* Left Side - Service List */}
-          <div className="space-y-3 sm:space-y-4 max-h-[500px] overflow-y-auto pr-2">
+          <div className={`space-y-3 sm:space-y-4 max-h-[500px] overflow-y-auto pr-2 scroll-slide-left ${isContentVisible ? 'visible' : ''}`}>
             {services.map((service, index) => {
               const Icon = service.icon;
               const isActive = activeService === index;
@@ -127,7 +136,7 @@ export default function ServicesOverview({ onNavigate }: ServicesOverviewProps) 
           </div>
 
           {/* Right Side - Image */}
-          <div className="relative">
+          <div className={`relative scroll-slide-right ${isContentVisible ? 'visible' : ''}`} style={{ transitionDelay: '100ms' }}>
             <div className="rounded-xl overflow-hidden shadow-2xl border border-dark-700">
               <img
                 src={services[activeService].image}
@@ -139,7 +148,7 @@ export default function ServicesOverview({ onNavigate }: ServicesOverviewProps) 
         </div>
 
         {/* CTA Button */}
-        <div className="text-center mt-6 sm:mt-8">
+        <div className={`text-center mt-6 sm:mt-8 scroll-fade-up ${isContentVisible ? 'visible' : ''}`} style={{ transitionDelay: '200ms' }}>
           <button
             onClick={() => onNavigate('services')}
             className="inline-flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 bg-accent-600 hover:bg-accent-700 text-white rounded-lg font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl text-xs sm:text-sm"
